@@ -5,8 +5,12 @@ const models = require('../models/index')
 const controllers = {}
 
 controllers.home = async(req, res) => {
+    res.render("BerandaMHS")
+}
+
+controllers.RPS = async(req, res) => {
     const RPS = await models.course_plans.findAll({})
-    res.render("landingpage", {RPS} )
+    res.render("RPSMahasiswa", {RPS} )
 }
 
 controllers.detail = async(req, res) => {
@@ -15,7 +19,7 @@ controllers.detail = async(req, res) => {
             id : req.params.id
         }
     })
-    res.render("landingpage", {RPS} )
+    res.render("RPS", {RPS} )
 }
 
 controllers.lihatDetailRPS = async (req, res) => {
@@ -86,7 +90,7 @@ controllers.cari = async (req, res) => {
             ]
         }
     })
-    res.render("landingpage", {RPS}) 
+    res.render("cariRPS", {RPS}) 
     // res.json({RPS})
 }
 
