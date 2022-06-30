@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portal Akademik 1B</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9c1321c239.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <%- include ('modals/headadmin') %>
+    <nav>
+        <div class="row no-gutters mt-5">
+            <%- include ('modals/navbaradmin', {nama, NIP}) %>
+            <div class="col-md-10 p-4 pt-4">
+                <h3><i class="fa-solid fa-universal-access me-2"></i>Pilih Hak Akses Dosen</h3><hr>
+                <div class="container">
+                    <div class="row">
+                      <div class="col-2"><h6>Nama Mata Kuliah</h6></div>
+                      <div class="col-3"><h6>: <%= name %></h6></div>
+                    </div>
+                </div><br>
+                <div>
+                    <table class="table table-bordered table-success table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">No</th>
+                                <th class="text-center" scope="col">Nama Dosen</th>
+                                <th class="text-center" scope="col">NIP</th>
+                                <th class="text-center" scope="col">Telepon</th>
+                                <th class="text-center" scope="col">Pilih</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% dosen.forEach((D, i) => { %>
+                            <tr>
+                                <td class="text-center" scope="row"><%= i+1 %></td>
+                                <td><%= D.name %></td>
+                                <td class="text-center"><%= D.reg_id %></td>
+                                <td class="text-center"><%= D.phone %></td>
+                                <td class="text-center"><a href="/tambahAksesDosen/<%= D.id %>/<%= id %>/<%= name %>"><i class="fas fa-plus-square btn btn-primary me-2"></i></a></td>
+                            </tr>
+                            <% } ) %>
+                        </tbody>
+                    </table><br>
+                    <a href="/detailAksesDosen/<%=id%>/<%=name%>" class="btn btn-success" >Kembali</a>
+                </div><br>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

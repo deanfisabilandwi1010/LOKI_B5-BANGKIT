@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portal Akademik 1B</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9c1321c239.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <%- include ('modals/headdosen') %>
+    <nav>
+        <div class="row no-gutters mt-5">
+          <%- include ('modals/navbardosen', {nama, NIP}) %>
+            <div class="col-md-10 p-4 pt-4">
+                <h3><i class="fa-solid fa-award me-2"></i>Komponen Penilaian</h3><hr>
+                <div class="container">
+                <div class="table shadow mb-4">
+                  <form action="/tambahKomponen/<%= id %>/<%= name %>" method="POST">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th scope="col">Nama Komponen</th>
+                              <th class="text-center">
+                                <select name="name" id=""class="form-select" aria-label="Default select example">
+                                  <option value="Tugas Besar">Tugas Besar</option>
+                                  <option value="UTS">UTS</option>
+                                  <option value="UAS">UAS</option>
+                                  <option value="Kuis">Kuis</option>
+                                  <option value="Tugas">Tugas</option>
+                                  <option value="Kehadiran">Kehadiran</option>
+                                </select>
+                              </th>
+                          </tr>
+                          <tr>
+                              <th scope="col">Persentase</th>
+                              <th class="text-center"><input name="percentage" type="tambahrps" id="inputtambahrps" class="form-control"></th>
+                          </tr>
+                      </thead> 
+                  </table>
+                </div>
+                  <button type="submit" class="btn btn-primary mb-3">Simpan</button>
+                  <a href="/detailKomponen/<%=id%>/<%=name%>" type="" class="btn btn-secondary mb-3">Kembali</a>
+                </div>
+              </form>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

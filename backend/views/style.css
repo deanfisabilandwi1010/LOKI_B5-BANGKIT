@@ -1,0 +1,39 @@
+.banner {
+    background : url("https://blog.cicil.co.id/wp-content/uploads/2020/07/Biaya-Kuliah-UNAND-Universitas-Andalas.png");
+    background-size : cover;
+    color: white;
+    text-shadow: 100%;
+}
+
+html, 
+body {
+    background : url("https://blog.cicil.co.id/wp-content/uploads/2020/07/Biaya-Kuliah-UNAND-Universitas-Andalas.png");
+    background-size : cover;
+    text-shadow: 100%;
+    padding-top : 50px;
+}
+
+.global-container {
+    height :100%;
+    display : flex;
+    align-items: center;
+    justify-content : center;
+    color : black;
+    text-shadow: 100%;
+}
+
+.login-form {
+    width : 380px;
+    height : 400px;
+    padding : 20px;
+    background-color : white;
+    border-radius : 10px;
+}
+
+.card-title {
+    padding-top : 5px;
+}
+
+.nav-link:hover {
+    background-color: black;
+}
