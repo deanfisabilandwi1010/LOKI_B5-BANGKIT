@@ -1,4 +1,4 @@
-console.log ('SELAMAT MENGERJAKAN SEMOGA A NI ANJAY');
+console.log ('BISMILLAH YAA ALLAH AAMIIN');
 const database = require('./config/database.js')
 const bodyParser = require("body-parser");
 const express = require('express')

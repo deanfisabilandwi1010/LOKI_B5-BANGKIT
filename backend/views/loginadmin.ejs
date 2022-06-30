@@ -1,34 +1,42 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portal Akademik 1B</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In E-RPS</title>
+    <link rel="stylesheet" href="/backend/public/stylesheets/app.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   </head>
 
   <body>
-    <%- include ('modals/headlogin') %>
       <nav>
         <div class="global-container">
             <div class="card login-form">
-                <div class="card-body">
-                    <h3 class="card-title text-center">Universitas Andalas</h3>
-                    <h1 class="card-title text-center">Portal Admin</h1>
-                </div>
                 <div class="card-text">
                     <form action="/loginAdmin" method="POST">
-                        <div class="mb-3">
-                          <label for="exampleInputNIP1" class="form-label">NIP</label>
-                          <input type="nip" name="NIP" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                          <button type="submit" class="btn btn-dark">Log In</button>
+                         <div class="container d-flex justify-content-center mt-5 ">
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="card p-5" style="background-color:#353535; margin-top: 50pt;">
+                                    <div class="logo mb-3"><img alt="gambar" src="https://lp3m.unand.ac.id/seminar/tsadmin/todakimage/logo.png" width="30%"></div>
+                                        <div>
+                                            <h4 class="mb-5 text-white">Aplikasi E-RPS</h4>
+                                        </div>
+                                </div>
+                                <div class="card two bg-white px-5 py-4 mb-3">
+                                    <div class="form-group"><input name="NIP"  class="form-control" id="NIP" required><label class="form-control-placeholder" for="NIP" >Username</label></div>
+                                    <div class="form-group"><input   name="password"  class="form-control" id="password" required><label class="form-control-placeholder" for="password">Password</label></div>
+                                    <button class="btn btn-primary btn-block btn-lg mt-1 mb-2 white" type="submit" style="background-color:#353535;color:white;text-decoration: none;"><span>Login<i class="fas fa-long-arrow-alt-right ml-2 white"></i></span></button>
+                                </div>
+                            </div>
+                        </div> 
                       </form>
+                      <body style="background-color:#EFEAD8">
+                          
+                    </body>
                 </div>
             </div>
         </div>
