@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 const controllers = {}
 
 controllers.login = async (req, res) => {
-    res.render("mainlogin")
+    res.render("login")
 }
 
 controllers.loginAdmin = async (req, res) => {
@@ -26,9 +26,9 @@ controllers.loginAdmin = async (req, res) => {
                     id  : cekNIP.id
                 }
             })
-            const cocok = await bcrypt.compareSync(req.body.password, user.password)
-            if(!cocok)
-                return res.status(400).json({msg : "Password salah"})
+            //const cocok = await bcrypt.compareSync(req.body.password, user.password)
+            //if(!cocok)
+              //  return res.status(400).json({msg : "Password salah"})
             const id = user.id
             const nama = user.name
             const email = user.email
