@@ -90,7 +90,7 @@ controllers.cari = async (req, res) => {
             ]
         }
     })
-    res.render("cariRPS", {RPS}) 
+    res.render("RPSmahasiswa", {RPS}) 
     // res.json({RPS})
 }
 
