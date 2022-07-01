@@ -5,12 +5,12 @@ const models = require('../models/index')
 const controllers = {}
 
 controllers.home = async(req, res) => {
-    res.render("BerandaMHS")
+    res.render("mhs_beranda")
 }
 
 controllers.RPS = async(req, res) => {
     const RPS = await models.course_plans.findAll({})
-    res.render("RPSMahasiswa", {RPS} )
+    res.render("mhs_RPS", {RPS} )
 }
 
 controllers.detail = async(req, res) => {
@@ -90,7 +90,7 @@ controllers.cari = async (req, res) => {
             ]
         }
     })
-    res.render("RPSmahasiswa", {RPS}) 
+    res.render("mhs_RPS", {RPS}) 
     // res.json({RPS})
 }
 
