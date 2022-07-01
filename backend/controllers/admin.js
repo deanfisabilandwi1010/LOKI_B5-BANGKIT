@@ -7,7 +7,20 @@ const cookieParser = require('cookie-parser')
 
 const controllers = {}
 
+
+
 controllers.home = async(req, res) => {
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+    res.render("admin_beranda", {accessToken, nama, NIP})
+}
+
+controllers.RPS = async(req, res) => {
    const accessToken = req.cookies.accessToken 
     if (!accessToken)
         return res.status(200).json("tidak ada token")
@@ -19,7 +32,7 @@ controllers.home = async(req, res) => {
     const RPS = await models.course_plans.findAll({
         atribute : ['rev', 'code', 'name', 'credit', 'semester']
     })
-    res.render("homepageadmin", {RPS, accessToken, nama, NIP} )
+    res.render("admin_RPS", {RPS, accessToken, nama, NIP} )
     // res.json({RPS})
 }
 
@@ -45,7 +58,7 @@ controllers.detailAksesDosen = async (req, res) => {
             model : models.lecturers
         }]
     })
-    res.render("aksesDosen1", {akses, id, nama, name, NIP})
+    res.render("admin_detailDosen", {akses, id, nama, name, NIP})
 }
 
 controllers.hlmTambahAksesDosen = async (req, res) => {
@@ -160,6 +173,9 @@ controllers.detailCPMKdanCPL = async (req, res) => {
             model : models.course_lo_details
         }
     })
+    const RPS = await models.course_plans.findAll({
+        where : {id : id}
+    })
     const CPL = await models.course_lo_details.findAll({
         include : {
             model: models.course_los,
@@ -169,7 +185,7 @@ controllers.detailCPMKdanCPL = async (req, res) => {
         }
     })
     // res.json({CPL})
-    res.render("cpmk-cpl1", {CPL})
+    res.render("admin_cplcpmk", {RPS, CPL})
 }
 
 controllers.detailRPS = async (req, res) => {
@@ -264,7 +280,7 @@ controllers.persentaseRPS = async (req, res) => {
     var project = hitung/RPS*100
     var casee = c/RPS*100
     // res.json({casee})
-    res.render("persentaserps", {nama, NIP, hitung, RPS, project, casee})
+    res.render("admin_persentase", {nama, NIP, hitung, RPS, project, casee})
 }
 
 module.exports = controllers

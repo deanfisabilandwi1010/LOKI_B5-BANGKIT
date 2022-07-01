@@ -85,9 +85,7 @@ controllers.cari = async (req, res) => {
     const RPS = await models.course_plans.findAll({
         where : {
             [Op.or] : [
-                {name : {[Op.like] : cari }},
-                {code : {[Op.like] : cari}}
-            ]
+                {name : {[Op.like] : cari }},            ]
         }
     })
     res.render("mhs_RPS", {RPS}) 

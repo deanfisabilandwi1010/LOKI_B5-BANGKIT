@@ -11,6 +11,7 @@ server.get('/admin', (req, res) => {
 })
 server.post('/loginAdmin', controllers.auth.loginAdmin)
 server.get('/homeAdmin', cekLogin, controllers.admin.home)
+server.get('/RPSadmin', cekLogin, controllers.admin.RPS)
 server.get('/detailAksesDosen/:id/:name', cekLogin, controllers.admin.detailAksesDosen)
 server.get('/tambahAksesDosen/:id/:name', cekLogin, controllers.admin.hlmTambahAksesDosen)
 server.get('/tambahAksesDosen/:idDosen/:id/:name', cekLogin, controllers.admin.cekTambahAksesDosen)

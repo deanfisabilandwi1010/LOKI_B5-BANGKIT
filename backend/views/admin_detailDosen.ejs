@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-    <script src="https://kit.fontawesome.com/f9e18e2b3f.js" crossorigin="anonymous"></script>
-    
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -24,85 +22,75 @@
 </head>
 
 <body id="body-pd" style="background-color: #EFEAD8;">
-    <header class="header" id="header" style="background-color: white;">
-        <div class="header_toggle"> 
-            <i class='bx bx-menu' id="header-toggle"></i> 
+    <header class="header" id="header" style="background-color: white">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> 
         </div>
-        <a class='btn btn-list' href="/login" style="font-size:14px; background-color: #353535; color:white; border:#353535 1px solid; margin-right:6px">Login</a>
     </header>
 
     <div class="l-navbar" id="nav-bar" >
         <nav class="nav">
             <div> 
+                <div class="nav_list2"> 
+                <a href="/berandaAdmin" class="nav_logo"> 
+                    <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
+                    <span class="nav_logo-name" style="margin-left:5px">Admin</span> 
+                </a>
+                </div>
                 <div class="nav_list"> 
-                        <a  href="/" class="nav_link"> 
+                        <a  href="/homeAdmin" class="nav_link"> 
                             <i class='bx bx-home nav_icon'></i> 
                             <span class="nav_name">Beranda</span> 
                         </a>
-                        <a  href="/RPS" class="nav_link active"> 
+                        <a  href="/adminRPS" class="nav_link active"> 
                             <i class='bx bx-clipboard nav_icon'></i> 
                             <span class="nav_name">Daftar RPS</span> 
                         </a> 
+                        <br><br><br>
+                        <a href="/views/login" class="nav_link" style="margin-top:260px;" href=""> 
+                            <i class='bx bx-log-out nav_icon'></i> 
+                            <span class="nav_name">Log Out</span> 
+                        </a>
                 </div>
             </div> 
         </nav>
     </div>
     
     <div>
-        <h6 style="margin-top:60px">Daftar RPS</h6>
+        <div class="container">
             <div class="row">
-                <div class="col-12" style="margin-top:70px">
-                    <div class="card2 mb-4" style="border-radius: 10px;">
-                        <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
-                            <div class="container-fluid">
-
-                                <div class="row">
-                                    <nav aria-label="breadcrumb" style="margin-top:15px;">
-                                        <ol class="breadcrumb">
-                                        <li class="me-3">
-                                            <p>Search</p>
-                                        </li>
-                                        <li class="me-3" aria-current="page">
-                                            <input type="text" align="right" id="mySearch" onkeyup=myfunction()>
-                                        </li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                                <form action="/lihatRPS" method="GET">
-                                    <table class="table">
-                                      <thead>
-                                          <tr>
-                                              <th scope="col">No.</th>
-                                              <th scope="col">Nama Mata Kuliah</th>
-                                              <th scope="col">Kode Mata Kuliah</th>
-                                              <th scope="col">Jumlah SKS</th>
-                                              <th scope="col">Lihat RPS</th>
-                                              <th scope="col">Export</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                        <% RPS.forEach((R, i) => { %>
-                                          <tr>
-                                              <th scope="row"><%= i+1 %></th>
-                                              <td><%= R.name %></td>
-                                              <td><%= R.code %></td>
-                                              <td><%= R.credit %></td>
-                                              <td><a href="lihatDetailRPS/<%= R.id %>/<%= R.name %>" ><i class="fa-solid fa-eye p-2 text-black rounded" data-toggle="tooltip" title="Open"></i></a></td>
-                                              <td><a target="_blank" href="exportDetailRPS/<%= R.id %>/<%= R.name %>"><i class="fa-solid fa-print p-2 text-black rounded" data-toggle="tooltip" title="Export"></i></a></td>
-                                          </tr>
-                                         <% }) %>
-                                      </tbody>
-                                    </table>
-                                  </form>
-                                  
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="col-2"><h6>Nama Mata Kuliah</h6></div>
+              <div class="col-3"><h6>: <%= name %></h6></div>
+            </div>
+        </div><br>
+        <div>
+            <table class="table table-bordered table-success table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">No</th>
+                        <th class="text-center" scope="col">Nama Dosen</th>
+                        <th class="text-center" scope="col">NIP</th>
+                        <th class="text-center" scope="col">Telepon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% akses.forEach((A, i) => { %>
+                    <tr>
+                        <td class="text-center" scope="row"><%= i+1 %></td>
+                        <td><%= A.lecturer.name %></td>
+                        <td class="text-center"><%= A.lecturer.reg_id %></td>
+                        <td class="text-center"><%= A.lecturer.phone %></td>
+                    </tr>
+                    <% } ) %>
+                </tbody>
+            </table><br>
+            <a href="/tambahAksesDosen/<%= id %>/<%= name %>" class="btn btn-warning"><i class="fas fa-plus-square me-2"></i>Tambah Dosen</a>
+            <a href="/homeAdmin" class="btn btn-success" type="button">Kembali</a>
+        </div><br>
+        
             </div>
     </div>
 
-    <div class="footer" style="bottom:-120px">
+    <div class="footer" style="bottom:-50px">
         <p>Copyright &copy 2022 Aplikasi E-RPS. All Rights Reserved.</p>
     </div>
 
