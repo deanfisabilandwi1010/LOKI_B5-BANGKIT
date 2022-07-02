@@ -13,9 +13,6 @@ controllers.home = async(req, res) => {
     const id = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-
-    models.course_plans.hasMany(models.course_plan_lecturers, {foreignKey: "id"})
-    models.course_plan_lecturers.belongsTo(models.course_plans, {foreignKey: "course_plan_id"})
     // const RPS = await models.course_plan_lecturers.findAll({
     //     where :{
     //         lecturer_id : id
@@ -24,9 +21,15 @@ controllers.home = async(req, res) => {
     //         models.course_plans
     //     ]
     // })
+    res.render("dosen_beranda", { accessToken, nama, NIP} ) 
+    //res.json({RPS})
+}
+controllers.daftarRPS = async (req, res)=>{
+    models.course_plans.hasMany(models.course_plan_lecturers, {foreignKey: "id"})
+    models.course_plan_lecturers.belongsTo(models.course_plans, {foreignKey: "course_plan_id"})
     const RPS = await models.course_plan_lecturers.findAll({
         where : {
-            lecturer_id : id
+            lecturer_id : 2
         },
         atribute : ['course_plan_id', 'lecturer_id'],
         include : {
@@ -34,8 +37,8 @@ controllers.home = async(req, res) => {
             atribute : ['id', 'code', 'name', 'credit']
         }
     })
-    res.render("homepagedosen", {RPS, accessToken, nama, NIP} ) 
-    //res.json({RPS})
+
+    res.render("dosen_daftarRPS", {RPS})
 }
 
 module.exports = controllers

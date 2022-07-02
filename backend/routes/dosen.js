@@ -11,6 +11,7 @@ server.get('/dosen', (req, res) => {
 })
 server.post('/loginDosen', controllers.auth.loginDosen)
 server.get('/homeDosen', cekLogin, controllers.dosen.home)
+server.get('/daftarRPS',controllers.dosen.daftarRPS)
 
 //controllers untuk RPS = course_plan
 server.get('/semuaRPS ', cekLogin, controllers.dosen.home)
