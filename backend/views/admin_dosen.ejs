@@ -105,7 +105,7 @@
                                                 <th><%= A.lecturer.reg_id %></th>
                                                 <th><%= A.lecturer.phone %></th>
                                                 <th width="280px">
-                                                    <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="" style="background-color: white; color:#353535; border:#353535 1px solid;">Hapus</a>
+                                                    <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="/admin/lecturer/<%= id %>/delete/<%= A.lecturer.reg_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Hapus</a>
                                                 </th>
                                             </tr>
                                         <% } ) %>

@@ -133,6 +133,44 @@ controllers.lecturerAdd = async (req, res) => {
     
 }
 
+controllers.lecturerDelete = async (req, res) => {
+    const id = req.params.id
+    const idDosen = req.params.idDosen
+    const name = req.params.name
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id_dosen = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+
+    models.lecturers.hasMany(models.course_plan_lecturers, {foreignKey : "id" })
+    const dosen = await models.lecturers.findOne({
+        where : {
+            reg_id: idDosen
+        }
+    })
+    models.course_plan_lecturers.belongsTo(models.lecturers, {foreignKey : "lecturer_id"})
+    const hapusdosenmatkul = await models.course_plan_lecturers.destroy({
+        where : {
+            course_plan_id : id,
+            lecturer_id: dosen.id
+        },
+        include : [{
+            model : models.lecturers
+        }]
+    })
+    if(hapusdosenmatkul){
+        console.log("Berhasil dihapus: ");
+        res.status(200).redirect("/admin/courses/lecturer/"+id);
+    }
+    else{
+        console.log("Gagal dihapus: ");
+        return res.status(200).json("Gagal dihapus")
+    }
+}
+
 controllers.cekTambahAksesDosen = async (req, res) => {
     const id = req.params.id
     const idDosen = req.params.idDosen
