@@ -18,9 +18,9 @@ Berikut kebutuhan fungsional sistem yang akan dibangun
 
 2. Pengguna (dosen/admin) dapat logout dari system
 
-3. Admin dapat menentukan dosen yang akan membuat/memperbaharui RPS
-- Sebuah RPS dalam dibuat oleh beberapa orang dosen dan dosen dapat membuat beberapa RPS.
-- Admin menentukan dosen per mata kuliah.
+3. Admin dapat menentukan dosen yang akan membuat/memperbaharui RPS ✅
+- Sebuah RPS dalam dibuat oleh beberapa orang dosen dan dosen dapat membuat beberapa RPS. ✅
+- Admin menentukan dosen per mata kuliah. ✅
 
 4. Admin dapat melihat laporan terkait RPS yang ada. Laporan yang dapat dibuat adalah
 - Peta CPMK ke CPL– Laporan yang memperlihatkan peta CPMK terhadap CPL program studi dalam bentuk table.
