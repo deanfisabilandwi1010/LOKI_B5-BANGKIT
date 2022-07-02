@@ -99,27 +99,38 @@ controllers.lecturerAdd = async (req, res) => {
     const nama = payload.nama
     const NIP = payload.NIP
 
-    const isIdUnique = id =>
-    db.Profile.findOne({ where: { id} })
-      .then(token => token !== null)
-      .then(isUnique => isUnique);
-    
-    const dosen = await models.course_plan_lecturers.count({
+    models.lecturers.hasMany(models.course_plan_lecturers, {foreignKey : "id" })
+    const dosen = await models.lecturers.findOne({
         where : {
-            course_plan_id : id,
-            lecturer_id: idDosen
+            reg_id: idDosen
         }
     })
+    models.course_plan_lecturers.belongsTo(models.lecturers, {foreignKey : "lecturer_id"})
+    const dosenrps = await models.course_plan_lecturers.findOne({
+        where : {
+            course_plan_id : id,
+            lecturer_id: dosen.id
+        },
+        include : [{
+            model : models.lecturers
+        }]
+    })
 
-    if(dosen>0){
+    if(dosenrps){
+        console.log("Hasil: "+dosenrps);
         return res.status(200).json("dosen sudah ditambahkan!");
     }
     else{
-        return res.status(200).json("dosen berhasil ditambahkan!");
+        console.log(dosen);
+        await models.course_plan_lecturers.create({
+            course_plan_id : id,
+            lecturer_id : dosen.id,
+            creator : 0
+        })
+        res.status(200).redirect("/admin/courses/lecturer/"+id);
     }
         
     
-    res.render("tambahDosen", {dosen, idDosen, id, nama, name, NIP})
 }
 
 controllers.cekTambahAksesDosen = async (req, res) => {
