@@ -20,7 +20,7 @@ controllers.detailCPMK = async (req, res) => {
             course_plan_id : req.params.id
         }
     })
-    res.render("CPMK1", {CPMK, name, id, nama, NIP})
+    res.render("dosen_CPMK", {CPMK, name, id, nama, NIP})
 }
 
 controllers.hlmTambahCPMK = async (req, res) => {
@@ -33,7 +33,7 @@ controllers.hlmTambahCPMK = async (req, res) => {
     const id_dosen = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("tambahCPMK", {id, name, nama, NIP})
+    res.render("dosen_tambahCPMK", {id, name, nama, NIP})
 }
 
 controllers.hlmTambahCPLkeCPMK = async (req, res) => {
@@ -67,7 +67,7 @@ controllers.hlmEditCPMK = async (req, res) => {
             id : req.params.idEdit
         }
     })
-    res.render("editCPMK", {CPMK, idEdit, id, name, nama, NIP})
+    res.render("dosen_editCPMK", {CPMK, idEdit, id, name, nama, NIP})
 }
 
 controllers.tambahCPMK = async (req, res) => {
