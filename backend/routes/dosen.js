@@ -20,6 +20,7 @@ server.get('/ubahRPS', cekDosenPengampu, controllers.RPS.lihatRPS)
 server.get('/tambahRPS', cekLogin, controllers.RPS.hlmTambahRPS)
 server.post('/tambahRPS', controllers.RPS.tambahRPS)
 server.put('/revisiRPS', cekDosenPengampu, controllers.RPS.revisiRPS)
+server.get('/revRPS', cekLogin, controllers.RPS.hlmRevRPS)
 
 //semua referensi ada dsini
 server.get('/semuaRef', cekLogin, controllers.course_plan_references.semuaRef) //ref kelar semua

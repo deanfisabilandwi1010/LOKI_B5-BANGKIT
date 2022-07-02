@@ -62,7 +62,7 @@ controllers.detailPertemuan = async (req, res) => {
             course_plan_id : req.params.id
         }
     })
-    res.render("pertemuan", {pertemuan, name, id, nama, NIP})
+    res.render("dosen_pertemuan", {pertemuan, name, id, nama, NIP})
 }
 
 controllers.hlmEditPertemuan = async (req, res) => {
@@ -82,7 +82,7 @@ controllers.hlmEditPertemuan = async (req, res) => {
             id : req.params.idEdit
         }
     })
-    res.render("editPertemuan", {pertemuan, idEdit, id, name, nama, NIP})
+    res.render("dosen_editper", {pertemuan, idEdit, id, name, nama, NIP})
 }
 
 controllers.hlmTambahPertemuan = async (req, res) => {
@@ -95,7 +95,7 @@ controllers.hlmTambahPertemuan = async (req, res) => {
     const id_dosen = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("tambahPertemuan", {id, nama, name, NIP}) //memanggil views bernama tambah pertemuan, dimana harus membawa si id,nama,name dan nip 
+    res.render("dosen_tambahper", {id, nama, name, NIP}) //memanggil views bernama tambah pertemuan, dimana harus membawa si id,nama,name dan nip 
 }
 
 controllers.tambahPertemuan = async (req, res) => {

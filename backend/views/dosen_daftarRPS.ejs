@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi E-RPS</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -64,7 +64,7 @@
                         <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                             <div class="container-fluid">
                                 <br>
-                                    <a href="/tambahRPS" class="btn btn-warning"><i class="fas fa-plus-square me-2"></i>Tambah RPS</a>
+                                    <a href="/tambahRPS" class="btn btn-secondary"><i class="fas fa-plus-square me-2"></i>Tambah RPS</a>
                                 <br>
                                 
                                 <table id="myTable" class="table table-bordered table-hover" style="margin-top:30px">
@@ -90,7 +90,7 @@
                                             <th><a class='btn btn-list' href="/detailRef/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Referensi</a></th>
                                             <th><a class='btn btn-list' href="/detailPertemuan/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Pertemuan</a></th>
                                             <th><a class='btn btn-list' href="/detailKomponen/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Komponen Nilai</a></th>
-                                            <th><a class='btn btn-list' style="background-color: white; color:#353535; border:#353535 1px solid;">Revisi</a></th>
+                                            <th><a class='btn btn-list' href="/revRPS" style="background-color: white; color:#353535; border:#353535 1px solid;">Revisi</a></th>
                                         </tr>
                                         <% i++} ) %>
                                     </tbody>

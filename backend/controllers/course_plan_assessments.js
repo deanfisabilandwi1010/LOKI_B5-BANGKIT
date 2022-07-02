@@ -15,7 +15,7 @@ controllers.hlmTambahKomponen = async (req, res) => {
     const id_dosen = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("tambahKomponen", {name, nama, NIP, id})
+    res.render("dosen_tambahkomp", {name, nama, NIP, id})
 }
 
 controllers.hlmEditKomponen = async (req, res) => {
@@ -35,7 +35,7 @@ controllers.hlmEditKomponen = async (req, res) => {
             id : req.params.idEdit
         }
     })
-    res.render("editKomponen", {komponen, idEdit, id, name, nama, NIP})
+    res.render("dosen_editkomp", {komponen, idEdit, id, name, nama, NIP})
 }
 
 controllers.editKomponen = async (req, res) => {
@@ -53,6 +53,7 @@ controllers.editKomponen = async (req, res) => {
         const name = req.params.name
 
         await models.course_plan_assessments.update({
+            name     : req.body.name,
             percentage      : req.body.percentage,
         },{
             where : {id : req.params.idEdit}
@@ -121,7 +122,7 @@ controllers.detailKomponen = async (req, res) => {
             course_plan_id : req.params.id
         }
     })
-    res.render("lihatKomponen1", {komponen, name, nama, NIP, id})
+    res.render("dosen_komp", {komponen, name, nama, NIP, id})
 }
 
 controllers.hapusKomponen = async (req, res) => {

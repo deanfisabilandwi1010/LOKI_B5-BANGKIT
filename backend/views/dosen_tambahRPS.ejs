@@ -74,43 +74,48 @@
                 <div class="card2 mb-4" style="border-radius: 10px;">
                     <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                         <div class="container-fluid">
-                            <form action="" method="POST">
+                            <form action="/tambahRPS" method="POST">
                                 <div class="row">
                                     <h5 align="center" style="margin-top:20px">Tambah RPS</h5> 
                                     <div class="row g-3">
                                         <div class="col-md-12">
-                                        <label for="">ID</label>
-                                        <input type="int" class="form-control" name="course_plan_detail_id" required>
+                                        <label for="">ID Mata Kuliah</label>
+                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps" required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Kode Mata Kuliah</label>
-                                        <input type="int" class="form-control" name="course_plan_detail_id" required>
+                                        <input type="text" class="form-control" name="code" id="inputtambahrps" required>
                                         </div>
                                         
                                         <div class="col-md-12">
-                                        <label for="">Nma Mata Kuliah</label>
-                                        <input type="int" class="form-control" name="course_plan_detail_id" required>
+                                        <label for="">Nama Mata Kuliah</label>
+                                        <input type="text" class="form-control" name="name" id="inputtambahrps" required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Nama Alias Mata Kuliah</label>
-                                        <input type="int" class="form-control" name="course_lo" required>
+                                        <input type="text" class="form-control" name="alias_name" id="inputtambahrps" required>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                        <label for="">Jumlah SKS</label>
+                                        <input type="int" class="form-control" name="credit" id="inputtambahrps" required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Semester</label>
-                                        <input type="int" class="form-control" name="course_plan_detail_id" required>
+                                        <input type="int" class="form-control" name="semester" id="inputtambahrps" required>
                                         </div>
                                         
                                         <div class="col-md-12">
                                         <label for="">Deskripsi</label>
-                                        <input type="int" class="form-control" name="course_plan_detail_id" required>
+                                        <textarea type="text" class="form-control" name="description" id="inputtambahrps"></textarea>
                                         </div>
 
                                         <div align="center" class="col-12">
                                             <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="">Reset</a>
-                                            <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="lihatRPSDosen.html">Cancel</a>
+                                            <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="/homedosen">Cancel</a>
                                             <input class="btn btn-list" type="submit" name="simpan" value="Submit" style="margin-left:30px; color: white;background-color:#353535; border:#353535 2px solid;">
                                         </div>
                                     </div>

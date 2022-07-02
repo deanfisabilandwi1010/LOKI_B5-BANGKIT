@@ -91,7 +91,7 @@ controllers.tambahCPMK = async (req, res) => {
         })
         await models.course_lo_details.create({
             curriculum_lo_id    : req.body.curriculum_lo_id,
-            course_lo_id        : idTerakhir+1
+            course_lo_id        : req.body.curriculum_lo_id,
         })
         
         res.status(200).redirect("/detailCPMK/"+id+"/"+name)

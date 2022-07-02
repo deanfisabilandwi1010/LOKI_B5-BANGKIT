@@ -15,7 +15,7 @@ controllers.hlmTambahRef = async (req, res) => { //MENAMPILKAN halaman tambah re
     const id_dosen = payload.id 
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("tambahRef", {id, name, nama, NIP}) //tampil pada halaman tambahref
+    res.render("dosen_tambahref", {id, name, nama, NIP}) //tampil pada halaman tambahref
 }
 
 controllers.hlmEditRef = async (req, res) => { //MENAMPILKAN halaman edit referensi
@@ -36,7 +36,7 @@ controllers.hlmEditRef = async (req, res) => { //MENAMPILKAN halaman edit refere
             id : req.params.idEdit
         }
     })
-    res.render("editReferensi", {ref, idEdit, id, name, nama, NIP}) //tampil pada halaman editreferensi
+    res.render("dosen_editref", {ref, idEdit, id, name, nama, NIP}) //tampil pada halaman editreferensi
 }
 
 controllers.editRef = async (req, res) => { //MENYIMPAN data referensi untuk edit
@@ -84,7 +84,7 @@ controllers.DetailRef = async (req, res) => { //MENAMPILKAN seluruh data referen
             course_plan_id : req.params.id
         }
     })
-    res.render("referensi", {ref, name, id, nama, NIP})
+    res.render("dosen_ref", {ref, name, id, nama, NIP})
 }
 
 controllers.semuaRef = async (req, res) => { //MENAMPILKAN semua referensi dari seluruh matkul

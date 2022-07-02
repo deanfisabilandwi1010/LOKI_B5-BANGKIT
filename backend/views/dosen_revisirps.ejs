@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi E-RPS</title>
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -63,7 +63,7 @@
                     <a href="daftarRPSDosen.html" class="btn btn-sm" style="font-size: 17px;font-weight:600;color: #404444">Daftar RPS</a>
                 </li>
                 <li class="me-3" aria-current="page">
-                    <a href="lihatRPSDosen.html" class="btn btn-sm" style="background-color: #353535; color: #fff; font-weight:600; font-size: 17px; border-radius: 10px;">Tambah CPMK</a>
+                    <a href="lihatRPSDosen.html" class="btn btn-sm" style="background-color: #353535; color: #fff; font-weight:600; font-size: 17px; border-radius: 10px;">Revisi RPS</a>
                 </li>
                 </ol>
             </nav>
@@ -74,29 +74,54 @@
                 <div class="card2 mb-4" style="border-radius: 10px;">
                     <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                         <div class="container-fluid">
-                            <form action="/tambahCPMK/<%= id %>/<%= name %>" method="POST">
+                            <form action="/revRPS" method="POST">
                                 <div class="row">
-                                    <h5 align="center" style="margin-top:20px">Tambah CPMK <%= name %></h5> 
+                                    <h5 align="center" style="margin-top:20px">Revisi RPS</h5> 
                                     <div class="row g-3">
 
                                         <div class="col-md-12">
-                                        <label for="">Nama</label>
-                                        <input type="text" class="form-control" name="name" type="tambahrps" id="inputtambahrps" required>
+                                        <label for="">Revisi</label>
+                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps" required>
                                         </div>
 
                                         <div class="col-md-12">
-                                            <label for="">CPL</label>
-                                            <select name="curriculum_lo_id" id="" class="form-select" aria-label="Default select example" required>
-                                              <option disabled selected value="">Pilih CPL</option>
-                                              <option value="1">Mengidentifikasi, memformulasikan dan memecahkan permasalahan kebutuhan informasi dari suatu organisasi</option>
-                                              <option value="2">Mengintegrasikan solusi berbasis teknologi informasi secara efektif pada suatu organisasi</option>
-                                              <option value="3">Menerapkan konsep-konsep dasar dalam merencanakan Sistem Informasi, merancang Sistem Informasi, membangun Sistem Informasi, mengoperasikan Sistem Informasi, dan mengevaluasi Sistem Informasi</option>
-                                            </select>
+                                        <label for="">ID Mata Kuliah</label>
+                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps"  required>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                        <label for="">Kode Mata Kuliah</label>
+                                        <input type="text" class="form-control" name="code" id="inputtambahrps" required>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                        <label for="">Nama Mata Kuliah</label>
+                                        <input type="text" class="form-control" name="name" id="inputtambahrps" required>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                        <label for="">Nama Alias Mata Kuliah</label>
+                                        <input type="text" class="form-control" name="alias_name" id="inputtambahrps" required>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                        <label for="">Jumlah SKS</label>
+                                        <input type="int" class="form-control" name="credit" id="inputtambahrps" required>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                        <label for="">Semester</label>
+                                        <input type="int" class="form-control" name="semester" id="inputtambahrps"  required>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                        <label for="">Deskripsi</label>
+                                        <textarea type="text" class="form-control" name="description" id="inputtambahrps" ></textarea>
                                         </div>
 
                                         <div align="center" class="col-12">
                                             <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="">Reset</a>
-                                            <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="/detailCPMK/<%=id%>/<%=name%>">Cancel</a>
+                                            <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="/homedosen">Cancel</a>
                                             <input class="btn btn-list" type="submit" name="simpan" value="Submit" style="margin-left:30px; color: white;background-color:#353535; border:#353535 2px solid;">
                                         </div>
                                     </div>

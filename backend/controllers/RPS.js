@@ -16,9 +16,6 @@ controllers.hlmTambahRPS = async (req, res) => {
     res.render("dosen_tambahRPS", {nama, NIP})
 }
 
-controllers.hlmRevRPS = async (req, res) => {
-}
-
 controllers.tambahRPS = async (req, res) => {
     const RPS = await models.course_plans.findOne({
         where : {
@@ -44,6 +41,17 @@ controllers.tambahRPS = async (req, res) => {
         console.log(err);
     }
 }
+
+controllers.hlmRevRPS = async (req, res) => {
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+    res.render("dosen_revisirps", {nama, NIP})
+} 
 
 controllers.lihatRPS = async (req, res) => {
     // const authHeader = req.headers['authorization'];
