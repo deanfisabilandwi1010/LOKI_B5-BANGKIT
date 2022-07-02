@@ -99,15 +99,19 @@ controllers.lecturerAdd = async (req, res) => {
     const nama = payload.nama
     const NIP = payload.NIP
 
+    const isIdUnique = id =>
+    db.Profile.findOne({ where: { id} })
+      .then(token => token !== null)
+      .then(isUnique => isUnique);
     
-    const dosen = await models.course_plan_lecturers.findOne({
+    const dosen = await models.course_plan_lecturers.count({
         where : {
             course_plan_id : id,
             lecturer_id: idDosen
         }
     })
 
-    if(dosen){
+    if(dosen>0){
         return res.status(200).json("dosen sudah ditambahkan!");
     }
     else{

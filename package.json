@@ -14,7 +14,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/deanfisabilandwi1010/LOKI_B5-BANGKIT/issues"
-
   },
   "homepage": "https://github.com/deanfisabilandwi1010/LOKI_B5-BANGKIT#readme",
   "dependencies": {
@@ -31,6 +30,6 @@
     "sequelize": "^6.17.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.18"
   }
 }
