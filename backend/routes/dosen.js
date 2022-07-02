@@ -13,7 +13,7 @@ server.post('/loginDosen', controllers.auth.loginDosen)
 server.get('/homeDosen', cekLogin, controllers.dosen.home)
 
 //controllers untuk RPS = course_plan
-server.get('/semuaRPS', cekLogin, controllers.dosen.home)
+server.get('/semuaRPS ', cekLogin, controllers.dosen.home)
 server.get('/lihatRPS', controllers.RPS.lihatRPS)
 server.get('/ubahRPS', cekDosenPengampu, controllers.RPS.lihatRPS)
 server.get('/tambahRPS', cekLogin, controllers.RPS.hlmTambahRPS)

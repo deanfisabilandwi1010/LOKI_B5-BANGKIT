@@ -48,7 +48,7 @@ controllers.loginAdmin = async (req, res) => {
                 httpOnly    : true,
                 maxAge      : 24 * 60 * 60 * 1000
             })
-            res.status(200).redirect("/homeAdmin")
+            res.status(200).redirect("/admin/index")
         } 
         catch (err) 
         {

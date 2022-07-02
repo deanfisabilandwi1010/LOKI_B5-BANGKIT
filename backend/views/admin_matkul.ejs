@@ -31,7 +31,7 @@
         <nav class="nav">
             <div> 
                 <div class="nav_list2"> 
-                <a href="/berandaAdmin" class="nav_logo"> 
+                <a href="/admin/index" class="nav_logo"> 
                     <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
                     <span class="nav_logo-name" style="margin-left:5px">Admin</span> 
                     <h6 class="text" align="center" ><%= nama %></h6>
@@ -43,12 +43,12 @@
                             <i class='bx bx-home nav_icon'></i> 
                             <span class="nav_name">Beranda</span> 
                         </a>
-                        <a  href="/adminRPS" class="nav_link active"> 
+                        <a  href="/admin/rps" class="nav_link active"> 
                             <i class='bx bx-clipboard nav_icon'></i> 
                             <span class="nav_name">Daftar RPS</span> 
                         </a> 
                         <br><br><br>
-                        <a href="/views/login" class="nav_link" style="margin-top:260px;" href=""> 
+                        <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
                             <i class='bx bx-log-out nav_icon'></i> 
                             <span class="nav_name">Log Out</span> 
                         </a>
@@ -58,41 +58,49 @@
     </div>
     
     <div>
-        <div class="container">
+        <h6 style="margin-top:60px">Daftar RPS</h6>
             <div class="row">
-              <div class="col-2"><h6>Nama Mata Kuliah</h6></div>
-              <div class="col-3"><h6>: <%= name %></h6></div>
-            </div>
-        </div><br>
-        <div>
-            <table class="table table-bordered table-success table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center" scope="col">No</th>
-                        <th class="text-center" scope="col">Nama Dosen</th>
-                        <th class="text-center" scope="col">NIP</th>
-                        <th class="text-center" scope="col">Telepon</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% akses.forEach((A, i) => { %>
-                    <tr>
-                        <td class="text-center" scope="row"><%= i+1 %></td>
-                        <td><%= A.lecturer.name %></td>
-                        <td class="text-center"><%= A.lecturer.reg_id %></td>
-                        <td class="text-center"><%= A.lecturer.phone %></td>
-                    </tr>
-                    <% } ) %>
-                </tbody>
-            </table><br>
-            <a href="/admin/lecturer/add/<%= id %>/<%= name %>" class="btn btn-warning"><i class="fas fa-plus-square me-2"></i>Tambah Dosen</a>
-            <a href="/admin/courses" class="btn btn-success" type="button">Kembali</a>
-        </div><br>
-        
+                <div class="col-12" style="margin-top:70px">
+                    <div class="card2 mb-4" style="border-radius: 10px;">
+                        <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
+                            <div class="container-fluid">
+                                <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>NO</th>
+                                            <th>KODE</th>
+                                            <th>MATA KULIAH</th>
+                                            <th>SKS</th>
+                                            <th>REVISI RPS</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% RPS.forEach((R, i) => { %>
+                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                        <th class="text-center" scope="row"><%= i+1 %></th>
+                                        <td><%= R.code %></td>
+                                        <td><%= R.name %></td>
+                                        <td><%= R.credit %></td>
+                                        <td><%= R.rev %></td>
+                                        <th width="480px">
+                                            <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
+                                            <a class='btn btn-list' href="/admin/courses/rps/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Rps</a>
+                                            <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
+                                        </th>
+                                        </tr>
+                                        <% } ) %>   
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
 
-    <div class="footer" style="bottom:-50px">
+    <div class="footer" style="bottom:-200px">
         <p>Copyright &copy 2022 Aplikasi E-RPS. All Rights Reserved.</p>
     </div>
 

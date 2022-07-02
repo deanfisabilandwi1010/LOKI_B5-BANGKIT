@@ -32,11 +32,61 @@ controllers.RPS = async(req, res) => {
     const RPS = await models.course_plans.findAll({
         atribute : ['rev', 'code', 'name', 'credit', 'semester']
     })
-    res.render("admin_RPS", {RPS, accessToken, nama, NIP} )
+    res.render("admin_matkul", {RPS, accessToken, nama, NIP} )
     // res.json({RPS})
 }
 
-controllers.detailAksesDosen = async (req, res) => {
+controllers.courses = async(req, res) => {
+    const accessToken = req.cookies.accessToken 
+     if (!accessToken)
+         return res.status(200).json("tidak ada token")
+     const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+     const id = payload.id
+     const nama = payload.nama
+     const NIP = payload.NIP
+ 
+    models.courses.hasMany(models.course_plans, {foreignKey : "id" })
+    models.course_plans.belongsTo(models.courses, {foreignKey : "course_id"})
+
+    const RPS = await models.courses.findAll({
+        where : {
+            course_id : id
+        },
+        include : [{
+            model : models.courses
+        }]
+    })
+     res.render("admin_matkul", {RPS, matkul, accessToken, nama, NIP} )
+     // res.json({RPS})
+ }
+
+ 
+controllers.coursesRps = async (req, res) => {
+    const id = req.params.id
+    const name = req.params.name
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id_dosen = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+
+    models.courses.hasMany(models.course_plans, {foreignKey : "id" })
+    models.course_plans.belongsTo(models.courses, {foreignKey : "course_id"})
+
+    const RPS = await models.course_plans.findAll({
+        where : {
+            course_id : id
+        },
+        include : [{
+            model : models.courses
+        }]
+    })
+    res.render("admin_matkul_rps", {RPS, id, nama, name, NIP})
+}
+
+controllers.lecturer = async (req, res) => {
     const id = req.params.id
     const name = req.params.name
     const accessToken = req.cookies.accessToken 
@@ -74,7 +124,7 @@ controllers.hlmTambahAksesDosen = async (req, res) => {
 
     const dosen = await models.lecturers.findAll({})
 
-    res.render("daftarDosen", {dosen, id, nama, name, NIP})
+    res.render("admin_dosen", {dosen, id, nama, name, NIP})
 }
 
 controllers.cekTambahAksesDosen = async (req, res) => {
@@ -115,7 +165,7 @@ controllers.tambahAksesDosen = async (req, res) => {
         lecturer_id : idDosen,
         creator : 0
     })
-    res.status(200).redirect("/detailAksesDosen/"+id+"/"+name)
+    res.status(200).redirect("/admin/lecturer/"+id)
     } catch (err) {
         console.log(err)
     }

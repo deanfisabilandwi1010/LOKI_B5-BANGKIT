@@ -31,7 +31,7 @@
         <nav class="nav">
             <div> 
                 <div class="nav_list2"> 
-                <a href="/homeAdmin" class="nav_logo"> 
+                <a href="/admin/index" class="nav_logo"> 
                     <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
                     <span class="nav_logo-name" style="margin-left:5px">Admin</span> 
                     <h6 class="text" align="center" ><%= nama %></h6>
@@ -39,16 +39,16 @@
                 </a>
                 </div>
                 <div class="nav_list"> 
-                        <a  href="/homeAdmin" class="nav_link"> 
+                        <a  href="/admin/index" class="nav_link"> 
                             <i class='bx bx-home nav_icon'></i> 
                             <span class="nav_name">Beranda</span> 
                         </a>
-                        <a  href="/RPSadmin" class="nav_link active"> 
+                        <a  href="/admin/rps" class="nav_link active"> 
                             <i class='bx bx-clipboard nav_icon'></i> 
                             <span class="nav_name">Daftar RPS</span> 
                         </a> 
                         <br><br><br>
-                        <a href="/views/login.html" class="nav_link" style="margin-top:260px;" href=""> 
+                        <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
                             <i class='bx bx-log-out nav_icon'></i> 
                             <span class="nav_name">Log Out</span> 
                         </a>
@@ -67,10 +67,12 @@
                                 <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
                                     <thead >
                                         <tr align="center" bgcolor='C4C4C4'>
-                                            <th>No</th>
-                                            <th>Kode Mata Kuliah</th>
-                                            <th>Nama Mata Kuliah</th>
-                                            <th>Action</th>
+                                            <th>NO</th>
+                                            <th>KODE</th>
+                                            <th>MATA KULIAH</th>
+                                            <th>SKS</th>
+                                            <th>REVISI</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,9 +81,11 @@
                                         <th class="text-center" scope="row"><%= i+1 %></th>
                                         <td><%= R.code %></td>
                                         <td><%= R.name %></td>
+                                        <td><%= R.credit %></td>
+                                        <td><%= R.rev %></td>
                                         <th width="480px">
                                             <a class='btn btn-list' target="_blank" href="/cetakRPS/<%= R.id %>/<%= R.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Cetak</a>
-                                            <a class='btn btn-list' href="/detailAksesDosen/<%= R.id %>/<%= R.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
+                                            <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
                                             <a class='btn btn-list' href="/detailCPMKdanCPL/<%= R.id %>/<%= R.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Peta CPL-CPMK</a>
                                             <a class='btn btn-list' href="/persentaseRPS" style="background-color: white; color:#353535; border:#353535 1px solid;">Persen RPS</a>
                                         </th>

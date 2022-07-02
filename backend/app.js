@@ -1,4 +1,4 @@
-console.log ('BISMILLAH YAA ALLAH AAMIIN');
+console.log ('BISMILLAH YAA ALLAH LULUS MATKUL PWEB YAA ALLAH AAMIIN');
 const database = require('./config/database.js')
 const bodyParser = require("body-parser");
 const express = require('express')
@@ -15,10 +15,10 @@ app.use(cookieParser())
 
 database.authenticate()
   .then(() => {
-    console.log('Berhasil terhubung database');
+    console.log('ALHAMDULILLAH DAH KONEK KE DATABASE');
   })
   .catch(err => {
-    console.error(`Gagal terhubung : ${err}`);
+    console.error(`SEMANGAT AYO KONEKIN PROGRAM KE DATABASE : ${err}`);
   });
 
 app.set("view engine", "ejs")
@@ -34,5 +34,5 @@ app.use('/', server.user)
 
 app.listen(port, () =>
 {
-    console.log(`Server sudah berjalan di port ${port}`)
+    console.log(`SERVERNYA UDAH JALAN DI PORT ${port}`)
 })
