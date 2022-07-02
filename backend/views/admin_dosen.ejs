@@ -80,59 +80,70 @@
                                         <li class="me-3">
                                             <p style="margin-top:3px;">Contributor</p>
                                         </li>
-                                        <li class="me-3" aria-current="page">
-                                            <div class="form-group" style="margin-bottom:20px">
-                                                <select style="padding:5px 10px; width:100%;" class="chosen-select" name="" required>
-                                                <option value="">Silahkan pilih dosen</option>;
-                                                <option value="B001">Husnil Kamil, M.T</option>;
-                                                <option value="B002">Ricky AKbar, M.Kom</option>;
-                                                <option value="B003">Adi Arga Arifnur, M.Kom</option>;
-                                                <option value="B004">Jefril Rahmadoni, M.Kom</option>;
-                                                </select>
-                                            </div>
-                                        </li>
-                                        <li class="me-3" aria-current="page">
-                                            <a class="btn btn-list" align="left" style=" color: white; background-color:#353535; border:#353535 2px solid;" href="tambahContributor.html">Tambah</a>
-                                        </li>
+                                        
+                                        
                                         </ol>
                                     </nav>
                                 </div>
-                                <br>
+                                <h3>Dosen Matkul (nama matkul)</h3>
                                 <table id="myTable" class="table table-bordered table-hover" >
                                     <thead >
                                         <tr align="center" bgcolor='C4C4C4'>
                                             <th>No</th>
-                                            <th>Nama Dosen</th>
-                                            <th></th>
+                                            <th>Nama</th>
+                                            <th>NIP</th>
+                                            <th>Kontak</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <% dosenmatkul.forEach((A, i) => { %>
+                                            <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                                <th><%= i+1 %></th>
+                                                <th><%= A.lecturer.name %></th>
+                                                <th><%= A.lecturer.reg_id %></th>
+                                                <th><%= A.lecturer.phone %></th>
+                                                <th width="280px">
+                                                    <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="/admin/lecturer/<%= id %>/delete/<%= A.lecturer.reg_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Hapus</a>
+                                                </th>
+                                            </tr>
+                                        <% } ) %>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                                <br>
+                                
+                                <hr>
+                                
+                                <h3>Tambah dosen (nama matkul)</h3>
+                                <table id="myTable" class="table table-bordered table-hover" >
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>NIP</th>
+                                            <th>Kontak</th>
+                                            <th> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
-                                            <th>1</th>
-                                            <th>Husnil Kamil, M.T</th>
+                                        <% daftardosen.forEach((D, i) => { %>
+                                        <tr>
+                                            <td class="text-center" scope="row"><%= i+1 %></td>
+                                            <td><%= D.name %></td>
+                                            <td class="text-center"><%= D.reg_id %></td>
+                                            <td class="text-center"><%= D.phone %></td>
                                             <th width="280px">
-                                                <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
-                                            </th>
-                                        </tr>
-                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
-                                            <th>2</th>
-                                            <th>Ricky Akbar, M.Kom</th>
-                                            <th width="280px">
-                                                <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
-                                            </th>
-                                        </tr>
-                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
-                                            <th>3</th>
-                                            <th>Adi Arga Arifnur, M.Kom</th>
-                                            <th width="280px">
-                                                <a class='btn btn-danger' onclick="return confirm('Anda yakin menghapus data ini ?')" href="" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
-                                            </th>
-                                        </tr>
+                                                <a class='btn btn-danger' onclick="return confirm('Yakin tambah dosen dengan nip (no nip) ?')" href="/admin/lecturer/<%= id %>/add/<%= D.reg_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Tambah</a>
+                                            </th> </tr>
+                                        <% } ) %>
                                     </tbody>
                                 </table>
 
                                 <div class="col-12">
-                                    <a class="btn btn-list mt-2" align="left" style=" color: white; background-color:#353535; border:#353535 2px solid;" href="/admin/lecturer">Back</a>
+                                    <a class="btn btn-list mt-2" align="left" style=" color: white; background-color:#353535; border:#353535 2px solid;" href="/admin/course/rps">Back</a>
                                 </div>
 
                             </div>

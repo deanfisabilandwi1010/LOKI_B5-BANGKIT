@@ -43,9 +43,9 @@
                             <i class='bx bx-home nav_icon'></i> 
                             <span class="nav_name">Beranda</span> 
                         </a>
-                        <a  href="/admin/rps" class="nav_link active"> 
+                        <a  href="/admin/courses" class="nav_link active"> 
                             <i class='bx bx-clipboard nav_icon'></i> 
-                            <span class="nav_name">Daftar RPS</span> 
+                            <span class="nav_name">Daftar Matkul</span> 
                         </a> 
                         <br><br><br>
                         <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
@@ -58,19 +58,20 @@
     </div>
     
     <div>
-        <h6 style="margin-top:60px">Daftar RPS</h6>
+        <h6 style="margin-top:60px">Daftar Matkul</h6>
             <div class="row">
                 <div class="col-12" style="margin-top:70px">
                     <div class="card2 mb-4" style="border-radius: 10px;">
                         <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                             <div class="container-fluid">
+                                <a href="/admin/courses/add"><button>Tambah Matkul</button></a>
+                                
                                 <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
                                     <thead >
                                         <tr align="center" bgcolor='C4C4C4'>
                                             <th>NO</th>
                                             <th>KODE</th>
                                             <th>MATA KULIAH</th>
-                                            <th>SKS</th>
                                             <th>REVISI RPS</th>
                                             <th></th>
                                         </tr>
@@ -81,10 +82,9 @@
                                         <th class="text-center" scope="row"><%= i+1 %></th>
                                         <td><%= R.code %></td>
                                         <td><%= R.name %></td>
-                                        <td><%= R.credit %></td>
                                         <td><%= R.rev %></td>
                                         <th width="480px">
-                                            <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
+                                            <a class='btn btn-list' href="/admin/courses/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
                                             <a class='btn btn-list' href="/admin/courses/rps/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Rps</a>
                                             <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
                                         </th>
