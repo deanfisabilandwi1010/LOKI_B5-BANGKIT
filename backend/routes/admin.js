@@ -11,20 +11,20 @@ server.get('/admin', (req, res) => {
 })
 server.post('/loginAdmin', controllers.auth.loginAdmin)
 server.get('/admin/index', cekLogin, controllers.admin.home)
+server.get('/admin/report', cekLogin, controllers.admin.home)
 server.get('/admin/courses', cekLogin, controllers.admin.courses)
-server.get('/admin/courses/add', cekLogin, controllers.admin.courses)
+server.get('/admin/courses/add', cekLogin, controllers.admin.courseAddpage)
+server.post('/admin/courses/add', cekLogin, controllers.admin.courseAdd)
+server.get('/admin/courses/delete/:idmatkul', cekLogin, controllers.admin.courseDelete)
 server.get('/admin/courses/rps/:id', cekLogin, controllers.admin.coursesRps)
-server.get('/admin/courses/lecturer/:id', cekLogin, controllers.admin.courseLecturer)
-server.get('/admin/lecturer/:id/add/:idDosen', cekLogin, controllers.admin.lecturerAdd)
-server.get('/admin/lecturer/:id/delete/:idDosen', cekLogin, controllers.admin.lecturerDelete)
+server.get('/admin/courses/:idmatkul/lecturer', cekLogin, controllers.admin.courseLecturer)
+server.get('/admin/courses/:idmatkul/lecturer/add/:iddosen', cekLogin, controllers.admin.lecturerAdd)
+server.get('/admin/courses/:idmatkul/lecturer/delete/:iddosen', cekLogin, controllers.admin.lecturerDelete)
 
-server.get('/admin/lecturer/add/:idDosen/:id/:name', cekLogin, controllers.admin.cekTambahAksesDosen)
-server.post('/admin/lecturer/add/:idDosen/:id/:name', cekLogin, controllers.admin.tambahAksesDosen)
 
 server.get('/detailCPMKdanCPL/:id/:name', cekLogin, controllers.admin.detailCPMKdanCPL)
 server.get('/semuaCPMKdanCPL', cekLogin, controllers.admin.semuaCPMKdanCPL)
 
-server.get('/semuaAksesDosen', cekLogin, controllers.admin.semuaAksesDosen)
 
 server.get('/detailRPS/:id/:name', cekLogin, controllers.admin.detailRPS)
 
