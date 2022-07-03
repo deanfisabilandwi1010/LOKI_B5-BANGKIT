@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi E-RPS</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -74,49 +74,49 @@
                 <div class="card2 mb-4" style="border-radius: 10px;">
                     <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                         <div class="container-fluid">
-                            <form action="/revRPS" method="POST">
+                            <form action="/RevRPS" method="POST">
                                 <div class="row">
                                     <h5 align="center" style="margin-top:20px">Revisi RPS</h5> 
                                     <div class="row g-3">
 
                                         <div class="col-md-12">
                                         <label for="">Revisi</label>
-                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps" required>
+                                        <input type="int" class="form-control" name="rev" id="inputtambahrps" required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">ID Mata Kuliah</label>
-                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps"  required>
+                                        <input type="int" class="form-control" name="course_id" id="inputtambahrps" value="<%=rev.id %>" required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Kode Mata Kuliah</label>
-                                        <input type="text" class="form-control" name="code" id="inputtambahrps" required>
+                                        <input type="text" class="form-control" name="code" id="inputtambahrps" value="<%=rev.code %>" required>
                                         </div>
                                         
                                         <div class="col-md-12">
                                         <label for="">Nama Mata Kuliah</label>
-                                        <input type="text" class="form-control" name="name" id="inputtambahrps" required>
+                                        <input type="text" class="form-control" name="name" id="inputtambahrps" value="<%=rev.name %>"required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Nama Alias Mata Kuliah</label>
-                                        <input type="text" class="form-control" name="alias_name" id="inputtambahrps" required>
+                                        <input type="text" class="form-control" name="alias_name" id="inputtambahrps" value="<%=rev.alias_name %>"required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Jumlah SKS</label>
-                                        <input type="int" class="form-control" name="credit" id="inputtambahrps" required>
+                                        <input type="int" class="form-control" name="credit" id="inputtambahrps" value="<%=rev.credit %>"required>
                                         </div>
 
                                         <div class="col-md-12">
                                         <label for="">Semester</label>
-                                        <input type="int" class="form-control" name="semester" id="inputtambahrps"  required>
+                                        <input type="int" class="form-control" name="semester" id="inputtambahrps" value="<%=rev.semester %>" required>
                                         </div>
                                         
                                         <div class="col-md-12">
                                         <label for="">Deskripsi</label>
-                                        <textarea type="text" class="form-control" name="description" id="inputtambahrps" ></textarea>
+                                        <input type="text" class="form-control" name="description" id="inputtambahrps"value="<%=rev.description %>" >
                                         </div>
 
                                         <div align="center" class="col-12">
