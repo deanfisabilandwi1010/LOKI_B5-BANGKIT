@@ -20,7 +20,7 @@ controllers.home = async(req, res) => {
     res.render("admin_beranda", {accessToken, nama, NIP})
 }
 
-//Tambah Matkul
+//CRUD Matkul
 controllers.courses = async(req, res) => {
    const accessToken = req.cookies.accessToken 
     if (!accessToken)
@@ -121,7 +121,6 @@ controllers.courseAdd = async (req, res) => {
     
 }
 controllers.courseDelete = async (req, res) => {
-    const id = req.params.id
     const idmatkul = req.params.idmatkul
     const accessToken = req.cookies.accessToken 
     if (!accessToken)
@@ -137,19 +136,28 @@ controllers.courseDelete = async (req, res) => {
             id: idmatkul
         }
     })
-    models.course_plan_lecturers.belongsTo(models.course_plans, {foreignKey : "course_plan_id"})
-    const hapusdosenrpsmatkul = await models.course_plan_lecturers.destroy({
+    models.course_plans.hasMany(models.course_plan_lecturers, {foreignKey : "id" })
+    const rps = await models.course_plans.findOne({
         where : {
-            course_id : idmatkul
+            course_id: matkul.id
+        }
+    })
+
+
+
+    models.course_plan_lecturers.belongsTo(models.course_plans, {foreignKey : "course_plan_id"})
+    const hapusdosenrps = await models.course_plan_lecturers.destroy({
+        where : {
+            course_plan_id : rps.id,
         },
         include : [{
-            model : models.courses
+            model : models.course_plans
         }]
     })
     models.course_plans.belongsTo(models.courses, {foreignKey : "course_id"})
-    const hapusrpsmatkul = await models.course_plans.destroy({
+    const hapusrps = await models.course_plans.destroy({
         where : {
-            course_id : idmatkul
+            course_id : matkul.id,
         },
         include : [{
             model : models.courses
@@ -158,28 +166,10 @@ controllers.courseDelete = async (req, res) => {
     
     const hapusmatkul = await models.courses.destroy({
         where : {
-            id : idmatkul
+            id : idmatkul,
         }
     })
-
-    if(hapusrpsmatkul){
-        console.log("rps matkul Berhasil dihapus: ");
-        res.status(200).redirect("/admin/courses");
-        if(hapusmatkul){
-            console.log("matkul Berhasil dihapus: ");
-            res.status(200).redirect("/admin/courses");
-
-        }
-        else{
-            console.log("Gagal dihapus: ");
-            return res.status(200).json("Matkul Gagal dihapus")
-
-        }
-    }
-    else{
-        console.log("Gagal dihapus: ");
-        return res.status(200).json("RPS Matkul Gagal dihapus")
-    }
+    res.status(200).redirect("/admin/courses/");
 }
 controllers.coursesRps = async (req, res) => {
     const id = req.params.id
@@ -205,9 +195,7 @@ controllers.coursesRps = async (req, res) => {
     })
     res.render("admin_matkul_rps", {RPS, id, nama, name, NIP})
 }
-
-
-//Akses Dosen
+//CRUD Dosen
 controllers.courseLecturer = async (req, res) => {
     const idmatkul = req.params.idmatkul
     const accessToken = req.cookies.accessToken 
@@ -232,8 +220,6 @@ controllers.courseLecturer = async (req, res) => {
     const daftardosen = await models.lecturers.findAll({})
     res.render("admin_dosen", {dosenmatkul, daftardosen, idmatkul, nama, NIP})
 }
-
-
 controllers.lecturerAdd = async (req, res) => {
     const idmatkul = req.params.idmatkul
     const iddosen = req.params.iddosen
@@ -279,8 +265,6 @@ controllers.lecturerAdd = async (req, res) => {
         
     
 }
-
-
 controllers.lecturerDelete = async (req, res) => {
     const idmatkul = req.params.idmatkul
     const iddosen = req.params.iddosen
