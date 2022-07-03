@@ -1,5 +1,3 @@
-//Controllers buat login
-
 const models = require('../models/index')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -33,9 +31,6 @@ controllers.loginUser = async (req, res) => {
                         model : models.lecturers
                     }]
                 })
-                //const cocok = await bcrypt.compareSync(req.body.password, user.password)
-                //if(!cocok)
-                  //  return res.status(400).json({msg : "Password salah"})
                 const id = user.id
                 const nama = user.name
                 const email = user.email
@@ -87,9 +82,6 @@ controllers.loginUser = async (req, res) => {
                     id : cekNIP.id
                 }
             })
-            //const cocok = await bcrypt.compareSync(req.body.password, user.password)
-            //if(!cocok)
-                //return res.status(400).json({msg : "Password salah"})
             const id = user.id
             const nama = user.name
             const email = user.email
@@ -135,7 +127,6 @@ controllers.logoutUser = async (req, res) => {
     })
     res.clearCookie('accessToken')
     res.redirect("/")
-    // return res.sendStatus(200);
 }
 controllers.logout = async (req, res) => {
     const accessToken = req.cookies.accessToken 
@@ -157,6 +148,5 @@ controllers.logout = async (req, res) => {
     })
     res.clearCookie('accessToken')
     res.redirect("/")
-    // return res.sendStatus(200);
 }
 module.exports = controllers

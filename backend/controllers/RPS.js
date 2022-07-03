@@ -1,5 +1,3 @@
-//controller untuk RPS (Dosen)
-
 const models = require('../models/index')
 const jwt = require('jsonwebtoken')
 
@@ -43,15 +41,6 @@ controllers.tambahRPS = async (req, res) => {
 }
 
 controllers.hlmRevRPS = async (req, res) => {
-    // const accessToken = req.cookies.accessToken 
-    // if (!accessToken)
-    //     return res.status(200).json("tidak ada token")
-    // const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    // const id = payload.id
-    // const nama = payload.nama
-    // const NIP = payload.NIP
-    // res.render("dosen_revisirps", {nama, NIP})
-    
     const id = req.params.id
     const name = req.params.name
     const idEdit = req.params.idEdit
@@ -71,7 +60,7 @@ controllers.hlmRevRPS = async (req, res) => {
     res.render("dosen_revisirps", {rev,idEdit, id, name, nama, NIP})
 } 
 
-controllers.editRev = async (req, res) => { //MENYIMPAN data referensi untuk edit
+controllers.editRev = async (req, res) => { 
     const {course_id, code, name, alias_name, credit, semester, description} = req.body
     try {
         await models.course_plans.create({
@@ -91,30 +80,6 @@ controllers.editRev = async (req, res) => { //MENYIMPAN data referensi untuk edi
 }
 
 controllers.lihatRPS = async (req, res) => {
-    // const authHeader = req.headers['authorization'];
-    // const token = authHeader && authHeader.split(' ')[1];
-    // if(token == null) 
-    //     return res.sendStatus(401);
-        
-    // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-    //     if(err) return res.sendStatus(403);
-    //         req.id      = decoded.id;
-    //         req.email   = decoded.email;
-    //         req.nama    = decoded.nama;
-    //         req.type    = decoded.type;
-    // })
-    // const dosenID = req.id
-
-    // const RPS = await models.course_plans.findAll({
-    //     include : [{
-    //         model : models.course_plan_lecturers,
-    //         // as  : 'dosen',
-    //         attribute : [[]],
-    //         where : {
-    //             lecturer_id : dosenID
-    //         }
-    //     }]
-    // })
     const RPS = await models.course_plans.findAll({})
     res.status(200).json(RPS)
 }

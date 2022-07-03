@@ -50,8 +50,6 @@ models.course_lo_details = course_lo_details
 
 course_plans.hasMany(course_plan_lecturers, {
     foreignKey : 'course_plan_id', 
-    // onDelete : 'CASCADE',
-    // onUpdate : 'CASCADE'
     })
 course_plan_lecturers.belongsTo(course_plans, {foreignKey : 'course_plan_id'})
 

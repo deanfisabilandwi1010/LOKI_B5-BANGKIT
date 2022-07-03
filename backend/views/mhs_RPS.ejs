@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,17 +59,14 @@
                                 <div class="row">
                                     <nav aria-label="breadcrumb" style="margin-top:15px;">
                                         <ol class="breadcrumb">
-                                        <li class="me-3">
-                                            <p>Search</p>
-                                        </li>
                                         <li class="me-3" aria-current="page">
-                                            <input type="text" align="right" id="mySearch" onkeyup=myfunction()>
+                                            <input type="text" id="myInput" onkeyup="myFunction()"  placeholder="Search Mata Kuliah">
                                         </li>
                                         </ol>
                                     </nav>
                                 </div>
                                 <form action="/lihatRPS" method="GET">
-                                    <table class="table">
+                                    <table class="table" id="myTable">
                                       <thead>
                                           <tr>
                                               <th scope="col">No.</th>
@@ -87,8 +84,8 @@
                                               <td><%= R.name %></td>
                                               <td><%= R.code %></td>
                                               <td><%= R.credit %></td>
-                                              <td><a href="lihatDetailRPS/<%= R.id %>/<%= R.name %>" ><i class="fa-solid fa-eye p-2 text-black rounded" data-toggle="tooltip" title="Open"></i></a></td>
-                                              <td><a target="_blank" href="exportDetailRPS/<%= R.id %>/<%= R.name %>"><i class="fa-solid fa-print p-2 text-black rounded" data-toggle="tooltip" title="Export"></i></a></td>
+                                              <th><a href="lihatDetailRPS/<%= R.id %>/<%= R.name %>" class="btn btn-secondary">Detail</a></th>
+                                              <th><a target="_blank"href="exportDetailRPS/<%= R.id %>/<%= R.name %>" class="btn btn-secondary">Export</a></th>
                                           </tr>
                                          <% }) %>
                                       </tbody>
@@ -166,3 +163,26 @@
             $('#tabel-data').DataTable();
         });
     </script>    
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>

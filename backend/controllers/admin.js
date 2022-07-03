@@ -1,13 +1,9 @@
-//controllers untuk admin
-
 const models = require('../models/index')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
 const controllers = {}
-
-
 
 controllers.home = async(req, res) => {
     const accessToken = req.cookies.accessToken 
@@ -20,7 +16,6 @@ controllers.home = async(req, res) => {
     res.render("admin_beranda", {accessToken, nama, NIP})
 }
 
-//CRUD Matkul
 controllers.courses = async(req, res) => {
    const accessToken = req.cookies.accessToken 
     if (!accessToken)
@@ -40,7 +35,6 @@ controllers.courses = async(req, res) => {
         }]
     })
     res.render("admin_matkul", {RPS, matkul, accessToken, nama, NIP} )
-    // res.json({RPS})
 }
 controllers.courseAddpage = async (req, res) => {
     const name = req.params.name
