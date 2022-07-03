@@ -138,11 +138,11 @@ controllers.editCPMK = async (req, res) => {
 
         const id = req.params.id
         const name = req.params.name
-
         await models.course_los.update({
             name      : req.body.name
         },{
-            where : {id : req.params.idEdit}
+            where : {
+                id : req.params.idEdit}
         })
         res.status(200).redirect("/detailCPMK/"+id+"/"+name)
     } catch (err) {

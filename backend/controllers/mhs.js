@@ -32,11 +32,8 @@ controllers.lihatDetailRPS = async (req, res) => {
     const RPS = await models.course_plans.findOne({
         where : {id : id}
     })
-    const CPL = await models.course_lo_details.findAll({
-        include : {
-            model: models.course_los,
-            where : {course_plan_id : id}
-        }
+    const CPMK = await models.course_los.findAll({
+        where : {course_plan_id : id}
     })
     const ref = await models.course_plan_references.findAll({
         where : {course_plan_id : id}
@@ -47,7 +44,7 @@ controllers.lihatDetailRPS = async (req, res) => {
     const komponen = await models.course_plan_assessments.findAll({
         where : {course_plan_id : id}
     })
-    res.render("detailFileRPS", {RPS, CPL, ref, pertemuan, komponen})
+    res.render("mahasiswa_detail", {RPS, CPMK, ref, pertemuan, komponen})
 }
 
 controllers.exportDetailRPS = async (req, res) => {
@@ -61,12 +58,10 @@ controllers.exportDetailRPS = async (req, res) => {
     const RPS = await models.course_plans.findOne({
         where : {id : id}
     })
-    const CPL = await models.course_lo_details.findAll({
-        include : {
-            model: models.course_los,
-            where : {course_plan_id : id}
-        }
+    const CPMK = await models.course_los.findAll({
+        where : {course_plan_id : id}
     })
+    
     const ref = await models.course_plan_references.findAll({
         where : {course_plan_id : id}
     })
@@ -76,7 +71,7 @@ controllers.exportDetailRPS = async (req, res) => {
     const komponen = await models.course_plan_assessments.findAll({
         where : {course_plan_id : id}
     })
-    res.render("PrintRPS", {RPS, CPL, ref, pertemuan, komponen})
+    res.render("mahasiswa_export", {RPS, CPMK, ref, pertemuan, komponen})
 }
 
 controllers.cari = async (req, res) => {

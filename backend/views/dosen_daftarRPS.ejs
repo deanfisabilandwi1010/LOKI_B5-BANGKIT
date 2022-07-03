@@ -38,19 +38,19 @@
                 </a>
                 </div>
                 <div class="nav_list"> 
-                        <a href="berandaDosen.html" class="nav_link"> 
-                            <i class='bx bx-home nav_icon'></i> 
-                            <span class="nav_name">Beranda</span> 
-                        </a>
-                        <a href="daftarRPSDosen.html" class="nav_link active"> 
-                            <i class='bx bx-clipboard nav_icon'></i> 
-                            <span class="nav_name">Daftar RPS</span> 
-                        </a> 
-                        <br><br><br>
-                        <a href="/views/login.html" class="nav_link" style="margin-top:260px;" href=""> 
-                            <i class='bx bx-log-out nav_icon'></i> 
-                            <span class="nav_name">Log Out</span> 
-                        </a>
+                    <a href="/homeDosen" class="nav_link"> 
+                        <i class='bx bx-home nav_icon'></i> 
+                        <span class="nav_name">Beranda</span> 
+                    </a>
+                    <a href="/daftarRPS" class="nav_link active"> 
+                        <i class='bx bx-clipboard nav_icon'></i> 
+                        <span class="nav_name">Daftar RPS</span> 
+                    </a> 
+                    <br><br><br>
+                    <a href="/login" class="nav_link" style="margin-top:260px;" href=""> 
+                        <i class='bx bx-log-out nav_icon'></i> 
+                        <span class="nav_name">Log Out</span> 
+                    </a>
                 </div>
             </div> 
         </nav>
@@ -78,6 +78,8 @@
                                             <th>Pertemuan</th>
                                             <th>Komponen Penilaian</th>
                                             <th>Revisi</th>
+                                            <th>Detail</th>
+                                            <th>Export</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,8 +91,11 @@
                                             <th><a class='btn btn-list' href="/detailCPMK/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">CPMK</a></th>
                                             <th><a class='btn btn-list' href="/detailRef/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Referensi</a></th>
                                             <th><a class='btn btn-list' href="/detailPertemuan/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Pertemuan</a></th>
-                                            <th><a class='btn btn-list' href="/detailKomponen/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Komponen Nilai</a></th>
+                                            <th><a class='btn btn-list' href="/detailKomponen/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Komp Nilai</a></th>
                                             <th><a class='btn btn-list' href="/revRPS/<%= R.course_plan_id %>/<%= R.course_plan_id %>/<%= R.course_plan.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Revisi</a></th>
+                                            <th><a href="lihatDetailRPSS/<%= R.course_plan_id %>/<%= R.course_plan.name %>" class='btn btn-list' style="background-color: white; color:#353535; border:#353535 1px solid;">Detail</a></th>
+                                            <th><a target="_blank" href="exportDetailRPSS/<%= R.course_plan_id %>/<%= R.course_plan.name %>" class='btn btn-list' style="background-color: white; color:#353535; border:#353535 1px solid;">Export</a></th>
+                                       
                                         </tr>
                                         <% i++} ) %>
                                     </tbody>
