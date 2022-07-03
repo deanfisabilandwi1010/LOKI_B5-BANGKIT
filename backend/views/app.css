@@ -202,7 +202,6 @@ p.mb-1{
     }
 
     .nav_logo, .nav_link{
-        display: grid;
         grid-template-columns: max-content max-content;
         align-items: center;
         column-gap: 1rem;
