@@ -1,5 +1,3 @@
-//Routes > Controller untuk admin
-
 const express = require('express')
 const server = express.Router()
 const controllers = require('../controllers/index.js')
@@ -26,7 +24,6 @@ server.get('/admin/courses/:idmatkul/lecturer/delete/:iddosen', cekLogin, contro
 
 server.get('/detailCPMKdanCPL/:id/:name', cekLogin, controllers.admin.detailCPMKdanCPL)
 server.get('/semuaCPMKdanCPL', cekLogin, controllers.admin.semuaCPMKdanCPL)
-
 
 server.get('/detailRPS/:id/:name', cekLogin, controllers.admin.detailRPS)
 

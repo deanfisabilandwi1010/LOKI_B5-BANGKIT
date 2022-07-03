@@ -1,4 +1,3 @@
-//mata kuliah prasyarat
 const { Sequelize, DataTypes, err } = require('sequelize');
 const db = require('../config/database.js')
 

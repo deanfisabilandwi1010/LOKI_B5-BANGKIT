@@ -10,8 +10,6 @@ var permissions = db.define('permissions', {
     },
     name        : Sequelize.STRING,
     guard_name  : Sequelize.STRING
-    // created_at :Sequelize.DATE,
-    // updated_at : Sequelize.DATE
 },{
     freezeTableName : true,
     timestamps      : false
