@@ -1,4 +1,4 @@
-# LOKI_B5-BANGKIT
+# LOKI_B5
 
 🖥️💻Anggota Kelompok 5
 
