@@ -249,8 +249,11 @@ controllers.coursesReport = async (req, res) => {
 
 controllers.cplcpmk = async (req, res) => {
     
-    const idrps = req.params.idmatkul
-    return res.status(200).json(""+idrps);
+    const idmatkul = req.params.idmatkul
+    const idrps = req.params.idrps
+    
+
+    return res.status(200).json(""+idrps+" "+idmatkul);
   };
 
   controllers.cblpbl = async (req, res) => {
