@@ -11,13 +11,16 @@ server.post('/login', controllers.auth.loginUser)
 server.post('/login/check', controllers.auth.loginUser)
 server.post('/logout', controllers.auth.logoutUser)
 server.get('/admin/index', cekLogin, controllers.admin.home)
+
 server.get('/admin/courses', cekLogin, controllers.admin.courses)
 server.get('/admin/courses/add', cekLogin, controllers.admin.courseAddpage)
 server.post('/admin/courses/add', cekLogin, controllers.admin.courseAdd)
 server.get('/admin/courses/delete/:idmatkul', cekLogin, controllers.admin.courseDelete)
-server.get('/admin/course/report/:idmatkul/cplcpmk', cekLogin, controllers.admin.cplcpmk)
-server.get('/admin/course/report/:idmatkul/cblpbl', cekLogin, controllers.admin.cblpbl)
+
 server.get('/admin/courses/report/:id', cekLogin, controllers.admin.coursesReport)
+server.get('/admin/course/report/:idmatkul/cplcpmk/:idrps', cekLogin, controllers.admin.cplcpmk)
+server.get('/admin/course/report/:idmatkul/cblpbl', cekLogin, controllers.admin.cblpbl)
+
 server.get('/admin/courses/:idmatkul/lecturer', cekLogin, controllers.admin.courseLecturer)
 server.get('/admin/courses/:idmatkul/lecturer/add/:iddosen', cekLogin, controllers.admin.lecturerAdd)
 server.get('/admin/courses/:idmatkul/lecturer/delete/:iddosen', cekLogin, controllers.admin.lecturerDelete)

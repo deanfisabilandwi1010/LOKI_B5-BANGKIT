@@ -248,62 +248,14 @@ controllers.coursesReport = async (req, res) => {
 }
 
 controllers.cplcpmk = async (req, res) => {
-    const course_plan = await course_plans.findOne({
-      attributes: ["id", "rev", "name"],
-      where: {
-        id: req.params.id,
-        rev: req.params.rev,
-      },
-    });
-    const cp = await curriculum_los.findAll({
-      order: [["id", "ASC"]],
-      attributes: ["id", "curriculum_id", "code", "name"],
-    });
-    const course_plan_id = req.params.id;
-    const cpmkAll = await course_los.findAll({
-      attributes: ["id", "course_plan_id", "code", "name"],
-      include: [
-        {
-          model: curriculum_los,
-          attributes: ["id", "code", "name"],
-          required: false,
-        },
-      ],
-      where: {
-        course_plan_id: course_plan_id,
-      },
-    });
-    res.render("admin_cplcpmk", { course_plan, cp, cpmkAll });
-    //res.json(cpmkAll);
+    
+    const idrps = req.params.idmatkul
+    return res.status(200).json(""+idrps);
   };
 
   controllers.cblpbl = async (req, res) => {
-    const course_plan = await course_plans.findOne({
-      attributes: ["id", "rev", "name"],
-      where: {
-        id: req.params.id,
-        rev: req.params.rev,
-      },
-    });
-    const cp = await curriculum_los.findAll({
-      order: [["id", "ASC"]],
-      attributes: ["id", "curriculum_id", "code", "name"],
-    });
-    const course_plan_id = req.params.id;
-    const cpmkAll = await course_los.findAll({
-      attributes: ["id", "course_plan_id", "code", "name"],
-      include: [
-        {
-          model: curriculum_los,
-          attributes: ["id", "code", "name"],
-          required: false,
-        },
-      ],
-      where: {
-        course_plan_id: course_plan_id,
-      },
-    });
-    res.render("admin_cplcpmk", { course_plan, cp, cpmkAll });
+    const idrps = req.params.idmatkul
+    return res.status(200).json(""+idrps);
     //res.json(cpmkAll);
   };
 //CRUD Dosen
