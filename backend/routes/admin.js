@@ -18,7 +18,7 @@ server.post('/admin/courses/add', cekLogin, controllers.admin.courseAdd)
 server.get('/admin/courses/delete/:idmatkul', cekLogin, controllers.admin.courseDelete)
 
 server.get('/admin/courses/report/:id', cekLogin, controllers.admin.coursesReport)
-server.get('/admin/course/report/:idmatkul/cplcpmk/:idrps', cekLogin, controllers.admin.cplcpmk)
+server.get('/admin/course/report/:idmatkul/cplcpmk/:idrps', cekLogin, controllers.admin.petacplcpmk)
 server.get('/admin/course/report/:idmatkul/cblpbl', cekLogin, controllers.admin.cblpbl)
 
 server.get('/admin/courses/:idmatkul/lecturer', cekLogin, controllers.admin.courseLecturer)
