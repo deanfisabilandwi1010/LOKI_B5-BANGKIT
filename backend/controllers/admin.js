@@ -19,7 +19,45 @@ controllers.home = async(req, res) => {
     const NIP = payload.NIP
     res.render("admin_beranda", {accessToken, nama, NIP})
 }
+controllers.report = async(req, res) => {
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+    
 
+    models.course_plans.hasMany(models.course_los, {foreignKey : "id" })
+    models.course_los.belongsTo(models.course_plans, {foreignKey : "course_plan_id"})
+    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
+    models.course_lo_details.belongsTo(models.curriculum_los, {foreignKey : "curriculum_lo_id"})
+    models.curricula.hasMany(models.curriculum_los, {foreignKey : "id" })
+    models.curriculum_los.belongsTo(models.curricula, {foreignKey : "curriculum_id"})
+    const rps = await models.course_plans.findAll({
+    })
+    const kurkul = await models.curricula.findAll({
+    })
+    const cpl = await models.curriculum_los.findAll({
+    })
+    const cpmk = await models.course_los.findAll({
+    
+    })
+    const cplcpmk = await models.course_lo_details.findAll({
+        include: [
+            {model:models.curriculum_los},
+            {model:models.course_los,
+            include: [{model: models.course_plans}]}
+        ]
+    
+    })
+    const pblcpl = await models.course_plan_assessments.findAll({
+    
+    })
+    
+    res.render("admin_report", {rps,cpl,cpmk,cplcpmk,pblcpl,accessToken, nama, NIP})
+}
 //CRUD Matkul
 controllers.courses = async(req, res) => {
    const accessToken = req.cookies.accessToken 
