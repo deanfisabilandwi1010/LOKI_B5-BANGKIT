@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi E-RPS</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -31,18 +31,9 @@
         <nav class="nav">
             <div> 
                 <div class="nav_list2"> 
-<<<<<<< HEAD
                     <a href="/admin/index" class="nav_logo"> 
-                        <img src="profile.png" width="20%"><br>
-                        <span class="nav_logo-name" style="margin-left:5px">Admin  </span> <br>
-                        <h6 class="nav_logo-name" align="center" ><%= nama %></h6>
+                        <span class="nav_logo-name" style="margin-left:5px">Admin</span>
                     </a>
-=======
-                <a href="#" class="nav_logo"> 
-                    <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
-                    <span class="nav_logo-name" style="margin-left:5px">Admin</span> 
-                </a>
->>>>>>> b493630dca85210dc46a6f0fdcbcbe3179025631
                 </div>
                 <div class="nav_list"> 
                     <a  href="/admin/index" class="nav_link"> 
@@ -53,11 +44,7 @@
                         <i class='bx bx-clipboard nav_icon'></i> 
                         <span class="nav_name">Daftar Matkul</span> 
                     </a> 
-                    <a  href="/admin/report" class="nav_link"> 
-                        <i class='bx bx-book nav_icon'></i> 
-                        <span class="nav_name">Laporan</span> 
-                    </a> 
-                    <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
+                    <a href="/logout" class="nav_link"> 
                         <i class='bx bx-log-out nav_icon'></i> 
                         <span class="nav_name">Log Out</span> 
                     </a>
@@ -92,7 +79,7 @@
                                         <div class="col-md-12">
                                             <label for="">Kurikulum</label>
                                             <select name="kurkul" id="" class="form-select" aria-label="Default select example" required>
-                                              <option disabled name="kurkul" value="">Pilih Kurikulum</option>
+                                              <option disabled selected name="kurkul" value="">Pilih Kurikulum</option>
                                               <% curricula.forEach((c, i) => { %>
                                                 <option name="kurkul"  value="<%= c.id %>"><%= c.name %></option>
                                                 
@@ -124,7 +111,7 @@
                                         </div>
                                         
 
-                                        <div align="center" class="col-12">
+                                        <div align="center" class="col-12" style="margin-top:20px">
                                             <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="">Reset</a>
                                             <a class="btn btn-list" style="margin-left:30px; color: white; background-color:#353535; border:#353535 2px solid;" href="">Cancel</a>
                                             <input class="btn btn-list" type="submit" name="simpan" value="Submit" style="margin-left:30px; color: white;background-color:#353535; border:#353535 2px solid;">

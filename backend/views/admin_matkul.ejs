@@ -347,19 +347,9 @@ p.mb-1{
         <nav class="nav">
             <div> 
                 <div class="nav_list2"> 
-<<<<<<< HEAD
                     <a href="/admin/index" class="nav_logo"> 
-                        <img src="profile.png" width="20%"><br>
-                        <span class="nav_logo-name" style="margin-left:5px">Admin  </span> <br>
-                        <h6 class="nav_logo-name" align="center" ><%= nama %></h6>
+                        <span class="nav_logo-name" style="margin-left:5px">Admin</span>
                     </a>
-=======
-                <a href="/admin/index" class="nav_logo"> 
-                    <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
-                    <span class="nav_logo-name" style="margin-left:5px">Admin</span> 
-                    <h6 class="text" align="center" ><%= nama %></h6>
-                </a>
->>>>>>> b493630dca85210dc46a6f0fdcbcbe3179025631
                 </div>
                 <div class="nav_list"> 
                     <a  href="/admin/index" class="nav_link"> 
@@ -370,11 +360,7 @@ p.mb-1{
                         <i class='bx bx-clipboard nav_icon'></i> 
                         <span class="nav_name">Daftar Matkul</span> 
                     </a> 
-                    <a  href="/admin/report" class="nav_link"> 
-                        <i class='bx bx-book nav_icon'></i> 
-                        <span class="nav_name">Laporan</span> 
-                    </a> 
-                    <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
+                    <a href="/logout" class="nav_link"> 
                         <i class='bx bx-log-out nav_icon'></i> 
                         <span class="nav_name">Log Out</span> 
                     </a>
@@ -410,7 +396,7 @@ p.mb-1{
                                         <th width="480px">
                                             <a class='btn btn-list' href="/admin/courses/<%= R.id %>/lecturer" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
                                             <a class='btn btn-list' href="/admin/courses/report/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Laporan</a>
-                                            <a class='btn btn-list' href="/admin/courses/delete/<%= R.course_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
+                                            <a class='btn btn-list'  onclick="return confirm('Anda yakin menghapus data ini ?')"  href="/admin/courses/delete/<%= R.course_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
                                         </th>
                                         </tr>
                                         <% } ) %>   
