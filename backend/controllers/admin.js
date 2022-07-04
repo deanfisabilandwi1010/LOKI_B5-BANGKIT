@@ -555,15 +555,14 @@ controllers.persentaseRPS = async (req, res) => {
     const NIP = payload.NIP
 
     const RPS = await models.course_plans.count({})
-
+    const week = await models.course_plan_details.count({})
     const hitung = await models.course_plan_assessments.count({
-        where : {flag : 1}
+        where : {method : "Project Based Learning"}
     })
-    // res.json({RPS})
-    var c = RPS - hitung
-    var project = hitung/RPS*100
-    var casee = c/RPS*100
-    // res.json({casee})
+
+    var c = week - hitung
+    var project = hitung/week*100
+    var casee = c/week*100
     res.render("admin_persentase", {nama, NIP, hitung, RPS, project, casee})
 }
 
