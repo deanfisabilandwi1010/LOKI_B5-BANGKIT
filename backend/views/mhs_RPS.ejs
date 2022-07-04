@@ -392,8 +392,7 @@ padding: 0 !important;
                                       <thead>
                                           <tr>
                                               <th scope="col">No.</th>
-                                              <th scope="col">Nama Mata Kuliah</th>
-                                              <th scope="col">Kode Mata Kuliah</th>
+                                              <th scope="col">Mata Kuliah</th>
                                               <th scope="col">Jumlah SKS</th>
                                               <th scope="col">Lihat RPS</th>
                                               <th scope="col">Export</th>
@@ -403,8 +402,7 @@ padding: 0 !important;
                                         <% RPS.forEach((R, i) => { %>
                                           <tr>
                                               <th scope="row"><%= i+1 %></th>
-                                              <td><%= R.name %></td>
-                                              <td><%= R.code %></td>
+                                              <td><%= R.code %> - <%= R.name %></td>
                                               <td><%= R.credit %></td>
                                               <th><a href="lihatDetailRPS/<%= R.id %>/<%= R.name %>" class="btn btn-secondary">Detail</a></th>
                                               <th><a target="_blank"href="exportDetailRPS/<%= R.id %>/<%= R.name %>" class="btn btn-secondary">Export</a></th>
