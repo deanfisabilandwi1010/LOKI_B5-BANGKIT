@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser')
 
 const controllers = {}
 
-
-
 controllers.home = async(req, res) => {
     const accessToken = req.cookies.accessToken 
     if (!accessToken)
@@ -46,9 +44,24 @@ controllers.report = async(req, res) => {
     })
     const cplcpmk = await models.course_lo_details.findAll({
         include: [
-            {model:models.curriculum_los},
-            {model:models.course_los,
-            include: [{model: models.course_plans}]}
+            {
+                model:models.curriculum_los,
+                /*on: {
+                    col1: sequelize.where(sequelize.col("course_lo_details.curriculum_lo_id"), "=", sequelize.col("curriculum_los.id"))
+                }*/
+            },
+            {
+                model:models.course_los,
+                /*on: {
+                    col1: sequelize.where(sequelize.col("course_lo_details.course_lo_id"), "=", sequelize.col("course_los.id"))
+                },*/
+                include: [{
+                    model: models.course_plans,
+                    /*on: {
+                        col1: sequelize.where(sequelize.col("course_los.course_plan_id"), "=", sequelize.col("course_plans.id"))
+                    }*/
+                }]
+            }
         ]
     
     })
