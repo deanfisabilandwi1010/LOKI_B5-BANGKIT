@@ -222,7 +222,7 @@ controllers.courseDelete = async (req, res) => {
     })
     res.status(200).redirect("/admin/courses/");
 }
-controllers.coursesRps = async (req, res) => {
+controllers.coursesReport = async (req, res) => {
     const id = req.params.id
     const name = req.params.name
     const accessToken = req.cookies.accessToken 
@@ -244,8 +244,68 @@ controllers.coursesRps = async (req, res) => {
             model : models.courses
         }]
     })
-    res.render("admin_matkul_rps", {RPS, id, nama, name, NIP})
+    res.render("admin_matkul_report", {RPS, id, nama, name, NIP})
 }
+
+controllers.cplcpmk = async (req, res) => {
+    const course_plan = await course_plans.findOne({
+      attributes: ["id", "rev", "name"],
+      where: {
+        id: req.params.id,
+        rev: req.params.rev,
+      },
+    });
+    const cp = await curriculum_los.findAll({
+      order: [["id", "ASC"]],
+      attributes: ["id", "curriculum_id", "code", "name"],
+    });
+    const course_plan_id = req.params.id;
+    const cpmkAll = await course_los.findAll({
+      attributes: ["id", "course_plan_id", "code", "name"],
+      include: [
+        {
+          model: curriculum_los,
+          attributes: ["id", "code", "name"],
+          required: false,
+        },
+      ],
+      where: {
+        course_plan_id: course_plan_id,
+      },
+    });
+    res.render("admin_cplcpmk", { course_plan, cp, cpmkAll });
+    //res.json(cpmkAll);
+  };
+
+  controllers.cblpbl = async (req, res) => {
+    const course_plan = await course_plans.findOne({
+      attributes: ["id", "rev", "name"],
+      where: {
+        id: req.params.id,
+        rev: req.params.rev,
+      },
+    });
+    const cp = await curriculum_los.findAll({
+      order: [["id", "ASC"]],
+      attributes: ["id", "curriculum_id", "code", "name"],
+    });
+    const course_plan_id = req.params.id;
+    const cpmkAll = await course_los.findAll({
+      attributes: ["id", "course_plan_id", "code", "name"],
+      include: [
+        {
+          model: curriculum_los,
+          attributes: ["id", "code", "name"],
+          required: false,
+        },
+      ],
+      where: {
+        course_plan_id: course_plan_id,
+      },
+    });
+    res.render("admin_cplcpmk", { course_plan, cp, cpmkAll });
+    //res.json(cpmkAll);
+  };
 //CRUD Dosen
 controllers.courseLecturer = async (req, res) => {
     const idmatkul = req.params.idmatkul

@@ -406,10 +406,9 @@
                                         <td><%= R.credit %></td>
                                         <td><%= R.rev %></td>
                                         <th width="480px">
-                                            <a class='btn btn-list' target="_blank" href="/cetakRPS/<%= R.id %>/<%= R.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Cetak</a>
-                                            <a class='btn btn-list' href="/admin/lecturer/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
-                                            <a class='btn btn-list' href="/detailCPMKdanCPL/<%= R.id %>/<%= R.name %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Peta CPL-CPMK</a>
-                                            <a class='btn btn-list' href="/persentaseRPS" style="background-color: white; color:#353535; border:#353535 1px solid;">Persen RPS</a>
+                                            <a class='btn btn-list' target="_blank" href="/admin/course/report/<%= R.id %>/print" style="background-color: white; color:#353535; border:#353535 1px solid;">Cetak</a>
+                                            <a class='btn btn-list' href="/admin/course/report/<%= R.id %>/cplcpmk" style="background-color: white; color:#353535; border:#353535 1px solid;">Peta CPL-CPMK</a>
+                                            <a class='btn btn-list' href="/admin/course/report/<%= R.id %>/cblpbl" style="background-color: white; color:#353535; border:#353535 1px solid;">Persen RPS</a>
                                         </th>
                                         </tr>
                                         <% } ) %>   
