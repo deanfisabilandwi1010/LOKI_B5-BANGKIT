@@ -1,5 +1,3 @@
-//Controller untuk PERTEMUAN (dosen)
-
 const models = require('../models/index')
 const jwt = require('jsonwebtoken')
 const controllers = {}
@@ -33,7 +31,7 @@ controllers.semuaPertemuan = async (req, res) => {
 
 controllers.hapusPertemuan = async(req, res) => {
     try {
-        const id = req.params.id //menangkap nilai id yang dikirimkan melalui url 
+        const id = req.params.id
         const name = req.params.name
         await models.course_plan_details.destroy({
             where : {
@@ -55,7 +53,7 @@ controllers.detailPertemuan = async (req, res) => {
     const nama = payload.nama
     const NIP = payload.NIP
 
-    const id = req.params.id //menangkap nilai id yang dikirimkan melalui url 
+    const id = req.params.id 
     const name = req.params.name
     const pertemuan = await models.course_plan_details.findAll({
         where : {
@@ -95,7 +93,7 @@ controllers.hlmTambahPertemuan = async (req, res) => {
     const id_dosen = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("dosen_tambahper", {id, nama, name, NIP}) //memanggil views bernama tambah pertemuan, dimana harus membawa si id,nama,name dan nip 
+    res.render("dosen_tambahper", {id, nama, name, NIP}) 
 }
 
 controllers.tambahPertemuan = async (req, res) => {
@@ -142,6 +140,5 @@ controllers.editPertemuan = async (req, res) => {
         console.log(err);
     }
 }
-
 
 module.exports = controllers

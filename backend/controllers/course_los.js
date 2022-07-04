@@ -1,5 +1,3 @@
-//controllers untuk CPMK (dosen)
-
 const models = require('../models/index')
 const jwt = require('jsonwebtoken')
 const controllers = {}
@@ -95,7 +93,6 @@ controllers.tambahCPMK = async (req, res) => {
         })
         
         res.status(200).redirect("/detailCPMK/"+id+"/"+name)
-        // res.render("tambahCPLkeCPMK", {idTerakhir, id, name, nama, NIP})
     } catch (err) {
         console.log(err);
     }
@@ -190,7 +187,6 @@ controllers.semuaCPMK = async (req, res) => {
             }]
         }]
     })
-    // res.json({komponen})
     res.render("semuaCPMK", {CPMK, nama, NIP})
 }
 

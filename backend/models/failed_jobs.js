@@ -15,11 +15,9 @@ var failed_jobs = db.define('failed_jobs', {
     connection  : Sequelize.TEXT,
     queue       : Sequelize.TEXT,
     payload     : Sequelize.TEXT,
-    // failed_at :Sequelize.DATE,
 },{
     freezeTableName : true,
     timestamps      : false
 })
 
-// user.removeAttribute('updatedAt', 'createdAt')
 module.exports = failed_jobs

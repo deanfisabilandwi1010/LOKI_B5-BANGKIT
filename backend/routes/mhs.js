@@ -1,5 +1,3 @@
-//routes > controllers untuk mahasiswa
-
 const express = require('express')
 const server = express.Router()
 const controllers = require('../controllers/index.js')

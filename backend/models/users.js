@@ -14,12 +14,9 @@ var user = db.define('users', {
     password        : Sequelize.STRING,
     remember_token  : Sequelize.STRING,
     type            : Sequelize.ENUM('M', 'D', 'T'),
-    // created_at :Sequelize.DATE,
-    // updated_at : Sequelize.DATE
 },{
     freezeTableName : true,
     timestamps      : false
 })
 
-// user.removeAttribute('updatedAt', 'createdAt')
 module.exports = user

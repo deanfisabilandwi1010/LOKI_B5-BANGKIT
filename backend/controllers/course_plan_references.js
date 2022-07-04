@@ -1,25 +1,21 @@
-//controller untuk REFERENSI (dosen)
-
-const models = require('../models/index') //semua yang ada di models melalui index
+const models = require('../models/index') 
 const jwt = require('jsonwebtoken')
 const controllers = {}
 
-controllers.hlmTambahRef = async (req, res) => { //MENAMPILKAN halaman tambah ref
-    //mengambil nilai didalam url (params)
+controllers.hlmTambahRef = async (req, res) => { 
     const id = req.params.id
     const name = req.params.name
-    const accessToken = req.cookies.accessToken //mengambil accestoken
-    if (!accessToken) //jika token salah
+    const accessToken = req.cookies.accessToken
+    if (!accessToken) 
         return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET) //verifikasi token
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET) 
     const id_dosen = payload.id 
     const nama = payload.nama
     const NIP = payload.NIP
-    res.render("dosen_tambahref", {id, name, nama, NIP}) //tampil pada halaman tambahref
+    res.render("dosen_tambahref", {id, name, nama, NIP}) 
 }
 
-controllers.hlmEditRef = async (req, res) => { //MENAMPILKAN halaman edit referensi
-    //mengambil nilai didalam url (params)
+controllers.hlmEditRef = async (req, res) => { 
     const id = req.params.id
     const name = req.params.name
     const idEdit = req.params.idEdit
@@ -36,10 +32,10 @@ controllers.hlmEditRef = async (req, res) => { //MENAMPILKAN halaman edit refere
             id : req.params.idEdit
         }
     })
-    res.render("dosen_editref", {ref, idEdit, id, name, nama, NIP}) //tampil pada halaman editreferensi
+    res.render("dosen_editref", {ref, idEdit, id, name, nama, NIP})
 }
 
-controllers.editRef = async (req, res) => { //MENYIMPAN data referensi untuk edit
+controllers.editRef = async (req, res) => { 
     try {
         const idEdit = req.params.idEdit
         const accessToken = req.cookies.accessToken 
@@ -68,7 +64,7 @@ controllers.editRef = async (req, res) => { //MENYIMPAN data referensi untuk edi
     }
 }
 
-controllers.DetailRef = async (req, res) => { //MENAMPILKAN seluruh data referensi
+controllers.DetailRef = async (req, res) => { 
     const accessToken = req.cookies.accessToken 
     if (!accessToken)
         res.render("loginDosen")
@@ -87,7 +83,7 @@ controllers.DetailRef = async (req, res) => { //MENAMPILKAN seluruh data referen
     res.render("dosen_ref", {ref, name, id, nama, NIP})
 }
 
-controllers.semuaRef = async (req, res) => { //MENAMPILKAN semua referensi dari seluruh matkul
+controllers.semuaRef = async (req, res) => { 
     const accessToken = req.cookies.accessToken 
     if (!accessToken)
         res.render("loginDosen")
@@ -95,42 +91,11 @@ controllers.semuaRef = async (req, res) => { //MENAMPILKAN semua referensi dari 
     const id = payload.id
     const nama = payload.nama
     const NIP = payload.NIP
-    //nampilin data ref berdasarkan id dosen
-    // models.course_plan_lecturers.hasMany(models.course_plans, {foreignKey: "id"})
-    // models.course_plans.belongsTo(models.course_plan_lecturers, {foreignKey: "id"})
-    // models.course_plan_references.hasMany(models.course_plans, {foreignKey: "id"})
-    // models.course_plans.belongsTo(models.course_plan_references, {foreignKey: "id"})
+
     models.course_plans.hasMany(models.course_plan_references, {foreignKey: "course_plan_id"})
     models.course_plan_references.belongsTo(models.course_plans, {foreignKey: "id"})
     models.course_plans.hasMany(models.course_plan_lecturers, {foreignKey: "id"})
     models.course_plan_lecturers.belongsTo(models.course_plans, {foreignKey: "course_plan_id"})
-   
-    // const RPS = await models.course_plan_references.findAll({
-    //     attributes : ['course_plan_id', 'title', 'author', 'publisher', 'year'],
-    //     include : [{
-    //         model : models.course_plans,
-    //         attributes: ['id', 'course_id'], 
-    //         include : [{
-    //             model : models.course_plan_lecturers, 
-    //             attributes: ['id', 'course_plan_id', 'lecturer_id'],
-    //             where : {
-    //                 lecturer_id : id
-    //             }
-    //         }]
-    //     }]
-    // })
-
-    // const ref = await models.course_plan_lecturers.findAll({
-    //     where : {
-    //         lecturer_id : 2
-    //     },
-    //     include : [{
-    //         model : models.course_plans,
-    //         include : [{
-    //             model : models.course_plan_references
-    //         }]
-    //     }]
-    // })
 
     const ref = await models.course_plan_references.findAll({
         include : [{
@@ -146,7 +111,7 @@ controllers.semuaRef = async (req, res) => { //MENAMPILKAN semua referensi dari 
     res.render("semuaReferensi", { ref, nama, NIP})
 }
 
-controllers.tambahRef = async(req, res) => { //MENYIMPAN data referensi yang ada
+controllers.tambahRef = async(req, res) => {
     try {
         const id = req.params.id
         const name = req.params.name
@@ -164,9 +129,9 @@ controllers.tambahRef = async(req, res) => { //MENYIMPAN data referensi yang ada
     }
 }
 
-controllers.hapusRef = async(req, res) => { //MENGHAPUS data referensi
+controllers.hapusRef = async(req, res) => { 
     try {
-        const id = req.params.id //menangkap nilai id yang dikirimkan melalui url 
+        const id = req.params.id 
         const name = req.params.name 
         await models.course_plan_references.destroy({
             where : {

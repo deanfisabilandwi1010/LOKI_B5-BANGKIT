@@ -1,8 +1,6 @@
-//controllers untuk KOMPONEN (dosen)
-
 const models = require('../models/index')
 const jwt = require('jsonwebtoken')
-const { json } = require('body-parser') //digunakan untuk mengambil data dari form pada framework Express.
+const { json } = require('body-parser') 
 const controllers = {}
 
 controllers.hlmTambahKomponen = async (req, res) => {
