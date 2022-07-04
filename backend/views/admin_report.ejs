@@ -26,7 +26,7 @@
 .card{
 	border: none;
 	border-radius: 10px;
-	background-color: white;
+	background-color: #353535;
 	width: 350px;
 	margin-top: -60px;
 }
@@ -346,43 +346,44 @@ p.mb-1{
     <div class="l-navbar" id="nav-bar" >
         <nav class="nav">
             <div> 
-                <div class="nav_list2"> 
+                <div class="nav_list2" display="block"> 
                     <a href="/admin/index" class="nav_logo"> 
                         <img src="profile.png" width="20%"><br>
                         <span class="nav_logo-name" style="margin-left:5px">Admin  </span> <br>
                         <h6 class="nav_logo-name" align="center" ><%= nama %></h6>
                     </a>
-                </div>
-                <div class="nav_list"> 
-                    <a  href="/admin/index" class="nav_link"> 
-                        <i class='bx bx-home nav_icon'></i> 
-                        <span class="nav_name">Beranda</span> 
-                    </a>
-                    <a  href="/admin/courses" class="nav_link  active"> 
-                        <i class='bx bx-clipboard nav_icon'></i> 
-                        <span class="nav_name">Daftar Matkul</span> 
-                    </a> 
-                    <a  href="/admin/report" class="nav_link"> 
-                        <i class='bx bx-book nav_icon'></i> 
-                        <span class="nav_name">Laporan</span> 
-                    </a> 
-                    <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
-                        <i class='bx bx-log-out nav_icon'></i> 
-                        <span class="nav_name">Log Out</span> 
-                    </a>
+                </div><br>
+                <div class="nav_list">
+                        <a  href="/admin/index" class="nav_link active"> 
+                            <i class='bx bx-home nav_icon'></i> 
+                            <span class="nav_name">Beranda</span> 
+                        </a>
+                        <a  href="/admin/courses" class="nav_link"> 
+                            <i class='bx bx-clipboard nav_icon'></i> 
+                            <span class="nav_name">Daftar Matkul</span> 
+                        </a> 
+                        <a  href="/admin/report" class="nav_link"> 
+                            <i class='bx bx-clipboard nav_icon'></i> 
+                            <span class="nav_name">Laporan</span> 
+                        </a> 
+                        <br><br><br>
+                        <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
+                            <i class='bx bx-log-out nav_icon'></i> 
+                            <span class="nav_name">Log Out</span> 
+                        </a>
                 </div>
             </div> 
         </nav>
     </div>
     
     <div>
-        <h6 style="margin-top:60px">Daftar Matkul</h6>
+        <h6 style="margin-top:60px">Laporan RPS</h6>
             <div class="row">
                 <div class="col-12" style="margin-top:70px">
                     <div class="card2 mb-4" style="border-radius: 10px;">
                         <div class="card-body" style="box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);border-radius: 10px;">
                             <div class="container-fluid">
-                                <a href="/admin/courses/add" class="btn btn-secondary"><i class="fas fa-plus-square me-2"></i>Tambah Matkul</a>
+                                <h3>Daftar RPS</h3>
                                 
                                 <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
                                     <thead >
@@ -390,25 +391,124 @@ p.mb-1{
                                             <th>NO</th>
                                             <th>KODE</th>
                                             <th>MATA KULIAH</th>
-                                            <th></th>
+                                            <th>SKS</th>
+                                            <th>JUMLAH REVISI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% RPS.forEach((R, i) => { %>
+                                        <% rps.forEach((R, i) => { %>
                                         <tr align="center" style="color:#353535; font-weight:100; width:100%;">
                                         <th class="text-center" scope="row"><%= i+1 %></th>
                                         <td><%= R.code %></td>
                                         <td><%= R.name %></td>
-                                        <th width="480px">
-                                            <a class='btn btn-list' href="/admin/courses/<%= R.id %>/lecturer" style="background-color: white; color:#353535; border:#353535 1px solid;">Dosen</a>
-                                            <a class='btn btn-list' href="/admin/courses/report/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Laporan</a>
-                                            <a class='btn btn-list' href="/admin/courses/delete/<%= R.course_id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Delete</a>
-                                        </th>
+                                        <td><%= R.credit %></td>
+                                        <td><%= R.rev %></td>
                                         </tr>
                                         <% } ) %>   
                                     </tbody>
                                 </table>
-
+                                <br>
+                                <hr>
+                                <h3>CPL</h3>
+                                
+                                <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>NO</th>
+                                            <th>KODE CPL</th>
+                                            <th>ALIAS</th>
+                                            <th>CPL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% cpl.forEach((cpl, i) => { %>
+                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                        <th class="text-center" scope="row"><%= i+1 %></th>
+                                        <td><%= cpl.id %></td>
+                                        <td><%= cpl.code %></td>
+                                        <td><%= cpl.name %></td>
+                                        </tr>
+                                        <% } ) %>   
+                                    </tbody>
+                                </table>
+                                <br>
+                                <hr>
+                                <h3>CPMK</h3>
+                                <br>
+                                <hr>
+                                <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>NO</th>
+                                            <th>KODE CPMK</th>
+                                            <th>ALIAS</th>
+                                            <th>MATKUL</th>
+                                            <th>CPMK</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% cpmk.forEach((R, i) => { %>
+                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                        <th class="text-center" scope="row"><%= i+1 %></th>
+                                        <td><%= R.id %></td>
+                                        <td><%= R.code %></td>
+                                        <td><%= R.course_plan_id %></td>
+                                        <td><%= R.name %></td>
+                                        </tr>
+                                        <% } ) %>   
+                                    </tbody>
+                                </table><br>
+                                <hr>
+                                <h3>CPL CPMK</h3>
+                                <br>
+                                <hr>
+                                <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>NO</th>
+                                            <th>CPL</th>
+                                            <th>CPMK</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% cplcpmk.forEach((R, i) => { %>
+                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                        <th class="text-center" scope="row"><%= i+1 %></th>
+                                        <td><%= R.curriculum_lo_id %></td>
+                                        <td><%= R.course_lo_id %></td>
+                                        </tr>
+                                        <% } ) %>   
+                                    </tbody>
+                                </table>
+                                <br>
+                                <hr>
+                                <h3>PBL-CBL</h3>
+                                
+                                <table id="myTable" class="table table-bordered table-hover" style="margin-top:20px">
+                                    <thead >
+                                        <tr align="center" bgcolor='C4C4C4'>
+                                            <th>NO</th>
+                                            <th>MATKUL</th>
+                                            <th>PBL</th>
+                                            <th>CPL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% pblcpl.forEach((R, i) => {
+                                            
+                                        } ) 
+                                        %>
+                                        <br>
+                                        <% pblcpl.forEach((R, i) => { %>
+                                        <tr align="center" style="color:#353535; font-weight:100; width:100%;">
+                                        <th class="text-center" scope="row"><%= i+1 %></th>
+                                        <td><%= R.course_plan_id %></td>
+                                        <td><%= R.name %></td>
+                                        <td><%= R.credit %></td>
+                                        </tr>
+                                        <% } ) %>   
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
