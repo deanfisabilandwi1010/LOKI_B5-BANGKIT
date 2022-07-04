@@ -1,3 +1,5 @@
+//controllers untuk admin
+
 const models = require('../models/index')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -15,7 +17,61 @@ controllers.home = async(req, res) => {
     const NIP = payload.NIP
     res.render("admin_beranda", {accessToken, nama, NIP})
 }
+controllers.report = async(req, res) => {
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+    
 
+    models.course_plans.hasMany(models.course_los, {foreignKey : "id" })
+    models.course_los.belongsTo(models.course_plans, {foreignKey : "course_plan_id"})
+    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
+    models.course_lo_details.belongsTo(models.curriculum_los, {foreignKey : "curriculum_lo_id"})
+    models.curricula.hasMany(models.curriculum_los, {foreignKey : "id" })
+    models.curriculum_los.belongsTo(models.curricula, {foreignKey : "curriculum_id"})
+    const rps = await models.course_plans.findAll({
+    })
+    const kurkul = await models.curricula.findAll({
+    })
+    const cpl = await models.curriculum_los.findAll({
+    })
+    const cpmk = await models.course_los.findAll({
+    
+    })
+    const cplcpmk = await models.course_lo_details.findAll({
+        include: [
+            {
+                model:models.curriculum_los,
+                /*on: {
+                    col1: sequelize.where(sequelize.col("course_lo_details.curriculum_lo_id"), "=", sequelize.col("curriculum_los.id"))
+                }*/
+            },
+            {
+                model:models.course_los,
+                /*on: {
+                    col1: sequelize.where(sequelize.col("course_lo_details.course_lo_id"), "=", sequelize.col("course_los.id"))
+                },*/
+                include: [{
+                    model: models.course_plans,
+                    /*on: {
+                        col1: sequelize.where(sequelize.col("course_los.course_plan_id"), "=", sequelize.col("course_plans.id"))
+                    }*/
+                }]
+            }
+        ]
+    
+    })
+    const pblcpl = await models.course_plan_assessments.findAll({
+    
+    })
+    
+    res.render("admin_report", {rps,cpl,cpmk,cplcpmk,pblcpl,accessToken, nama, NIP})
+}
+//CRUD Matkul
 controllers.courses = async(req, res) => {
    const accessToken = req.cookies.accessToken 
     if (!accessToken)
@@ -35,6 +91,7 @@ controllers.courses = async(req, res) => {
         }]
     })
     res.render("admin_matkul", {RPS, matkul, accessToken, nama, NIP} )
+    // res.json({RPS})
 }
 controllers.courseAddpage = async (req, res) => {
     const name = req.params.name
@@ -165,7 +222,7 @@ controllers.courseDelete = async (req, res) => {
     })
     res.status(200).redirect("/admin/courses/");
 }
-controllers.coursesRps = async (req, res) => {
+controllers.coursesReport = async (req, res) => {
     const id = req.params.id
     const name = req.params.name
     const accessToken = req.cookies.accessToken 
@@ -187,8 +244,20 @@ controllers.coursesRps = async (req, res) => {
             model : models.courses
         }]
     })
-    res.render("admin_matkul_rps", {RPS, id, nama, name, NIP})
+    res.render("admin_matkul_report", {RPS, id, nama, name, NIP})
 }
+
+controllers.cplcpmk = async (req, res) => {
+    
+    const idrps = req.params.idmatkul
+    return res.status(200).json(""+idrps);
+  };
+
+  controllers.cblpbl = async (req, res) => {
+    const idrps = req.params.idmatkul
+    return res.status(200).json(""+idrps);
+    //res.json(cpmkAll);
+  };
 //CRUD Dosen
 controllers.courseLecturer = async (req, res) => {
     const idmatkul = req.params.idmatkul
