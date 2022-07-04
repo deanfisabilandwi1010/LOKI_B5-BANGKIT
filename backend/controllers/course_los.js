@@ -68,6 +68,31 @@ controllers.hlmEditCPMK = async (req, res) => {
     res.render("dosen_editCPMK", {CPMK, idEdit, id, name, nama, NIP})
 }
 
+controllers.editCPMK = async (req, res) => {
+    try {
+        const idEdit = req.params.idEdit
+        const accessToken = req.cookies.accessToken 
+        if (!accessToken)
+            return res.status(200).json("tidak ada token")
+        const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+        const id_dosen = payload.id
+        const nama = payload.nama
+        const NIP = payload.NIP
+
+        const id = req.params.id
+        const name = req.params.name
+        await models.course_los.update({
+            name      : req.body.name
+        },{
+            where : {
+                id : req.params.idEdit}
+        })
+        res.status(200).redirect("/detailCPMK/"+id+"/"+name)
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 controllers.tambahCPMK = async (req, res) => {
     try {
         const idTerakhir = await models.course_los.max("id")
@@ -119,31 +144,6 @@ controllers.tambahCPLkeCPMK = async (req, res) => {
         res.status(200).redirect("/detailCPMK/"+id+"/"+name) 
     } catch (err) {
         console.log(err)
-    }
-}
-
-controllers.editCPMK = async (req, res) => {
-    try {
-        const idEdit = req.params.idEdit
-        const accessToken = req.cookies.accessToken 
-        if (!accessToken)
-            return res.status(200).json("tidak ada token")
-        const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-        const id_dosen = payload.id
-        const nama = payload.nama
-        const NIP = payload.NIP
-
-        const id = req.params.id
-        const name = req.params.name
-        await models.course_los.update({
-            name      : req.body.name
-        },{
-            where : {
-                id : req.params.idEdit}
-        })
-        res.status(200).redirect("/detailCPMK/"+id+"/"+name)
-    } catch (err) {
-        console.log(err);
     }
 }
 

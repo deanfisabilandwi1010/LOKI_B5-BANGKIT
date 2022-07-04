@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi E-RPS</title>
     
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -19,7 +19,7 @@
     .card{
         border: none;
         border-radius: 10px;
-        background-color: #353535;
+        background-color: white;
         width: 350px;
         margin-top: -60px;
     }
@@ -326,6 +326,11 @@
         .body-pd{
             padding-left: calc(var(--nav-width) + 188px)
         }
+
+        h6 {
+margin: 0 !important;
+padding: 0 !important;
+}
         }
     </style>
 </head>
@@ -344,10 +349,10 @@
                     <img src="http://www.clker.com/cliparts/M/o/W/d/C/j/about-icon-md.png" align="center" width="20%"><br>
                     <span class="nav_logo-name" style="margin-left:5px">Admin <br> </span> 
                     <h6 class="text" align="center" ><%= nama %></h6>
-                    <h6 class="text" align="center">NIP <%= NIP %></h6>
+
                 </a>
-                </div>
-                <div class="nav_list"> 
+                </div><br>
+                <div class="nav_list">
                         <a  href="/admin/index" class="nav_link active"> 
                             <i class='bx bx-home nav_icon'></i> 
                             <span class="nav_name">Beranda</span> 
@@ -357,11 +362,11 @@
                             <span class="nav_name">Daftar Matkul</span> 
                         </a> 
                         <a  href="/admin/report" class="nav_link"> 
-                            <i class='bx bx-clipboard nav_icon'></i> 
+                            <i class='bx bx-book nav_icon'></i> 
                             <span class="nav_name">Laporan</span> 
                         </a> 
-                        <br><br><br>
                         <a href="/logout" class="nav_link" style="margin-top:260px;" href=""> 
+
                             <i class='bx bx-log-out nav_icon'></i> 
                             <span class="nav_name">Log Out</span> 
                         </a>
