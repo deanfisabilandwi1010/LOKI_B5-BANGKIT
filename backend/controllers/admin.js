@@ -248,61 +248,7 @@ controllers.coursesReport = async (req, res) => {
 }
 
 controllers.petacplcpmk = async (req, res) => {
-    
-    const idmatkul = req.params.idmatkul
-    const idrps = req.params.idrps
-
-    console.log(idrps);
-    const accessToken = req.cookies.accessToken 
-    if (!accessToken)
-        return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    const id_dosen = payload.id
-    const nama = payload.nama
-    const NIP = payload.NIP
-    
-    models.course_plans.hasMany(models.course_los, {foreignKey : "id" })
-    models.course_los.belongsTo(models.course_plans, {foreignKey : "course_plan_id"})
-    models.course_los.hasMany(models.course_lo_details, {foreignKey : "id" })
-    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
-    models.curriculum_los.hasMany(models.course_lo_details, {foreignKey : "id" })
-    models.course_lo_details.belongsTo(models.curriculum_los, {foreignKey : "curriculum_lo_id"})
-    
-
-    const rps = await models.course_plans.findAll({
-        
-    attributes: ["id", "course_id", "code", "name"],
-        where: {
-          id: idrps
-        }
-      });
-
-      const rps_id = rps.id
-
-      const cpmk = await models.course_los.findOne({
-        where: {
-          course_plan_id: rps_id
-        }
-      });
-
-      const cpl = await models.curriculum_los.findAll({
-      });
-      
-      const cpltocpmk = await models.course_lo_details.findAll({
-        include: [
-          {
-            model: models.curriculum_los,
-            required: false,
-          }
-        ],
-        where: {
-          curriculum_lo_id: 1,
-          course_lo_id: cpmk.id,
-        }
-      });
-      //res.render("admin/cplToCpmk", { rps, cpl, cpmk });
-      //res.json(cpmkAll);
-        return res.status(200).json("dosen sudah ditambahkan!"+idrps+"\n"+rps_id);
+    res.render("admin_cplcpmk")
   };
 
   controllers.cblpbl = async (req, res) => {
