@@ -19,20 +19,14 @@ server.get('/admin/courses/delete/:idmatkul', cekLogin, controllers.admin.course
 
 server.get('/admin/courses/report/:id', cekLogin, controllers.admin.coursesReport)
 server.get('/admin/course/report/:idmatkul/cplcpmk/:idrps', cekLogin, controllers.admin.petacplcpmk)
-server.get('/admin/course/report/:idmatkul/cblpbl', cekLogin, controllers.admin.cblpbl)
+server.get('/admin/course/report/:idmatkul/cblpbl', cekLogin, controllers.admin.persentaseRPS)
 
 server.get('/admin/courses/:idmatkul/lecturer', cekLogin, controllers.admin.courseLecturer)
 server.get('/admin/courses/:idmatkul/lecturer/add/:iddosen', cekLogin, controllers.admin.lecturerAdd)
 server.get('/admin/courses/:idmatkul/lecturer/delete/:iddosen', cekLogin, controllers.admin.lecturerDelete)
 
 
-server.get('/detailCPMKdanCPL/:id/:name', cekLogin, controllers.admin.detailCPMKdanCPL)
-server.get('/semuaCPMKdanCPL', cekLogin, controllers.admin.semuaCPMKdanCPL)
+server.get('/admin/course/report/:id/print', cekLogin, controllers.admin.cetakRPS, controllers.admin.persentaseRPS)
 
-server.get('/detailRPS/:id/:name', cekLogin, controllers.admin.detailRPS)
-
-server.get('/cetakRPS/:id/:name', cekLogin, controllers.admin.cetakRPS)
-
-server.get('/persentaseRPS', cekLogin, controllers.admin.persentaseRPS)
 
 module.exports = server

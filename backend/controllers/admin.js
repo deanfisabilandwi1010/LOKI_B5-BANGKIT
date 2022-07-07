@@ -248,14 +248,10 @@ controllers.coursesReport = async (req, res) => {
 }
 
 controllers.petacplcpmk = async (req, res) => {
-    res.render("admin_cplcpmk")
+    const idmatkul = req.params.idrps;
+    res.render("admin_cplcpmk", {idmatkul})
   };
 
-  controllers.cblpbl = async (req, res) => {
-    const idrps = req.params.idmatkul
-    return res.status(200).json(""+idrps);
-    //res.json(cpmkAll);
-  };
 //CRUD Dosen
 controllers.courseLecturer = async (req, res) => {
     const idmatkul = req.params.idmatkul
@@ -365,133 +361,9 @@ controllers.lecturerDelete = async (req, res) => {
 }
 
 
-
-controllers.semuaCPMKdanCPL = async (req, res) => {
-    const accessToken = req.cookies.accessToken 
-    if (!accessToken)
-        return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    const id = payload.id
-    const nama = payload.nama
-    const NIP = payload.NIP
-
-    const RPS = await models.course_plans.findAll({
-        atribute : ['rev', 'code', 'name', 'credit', 'semester']
-    })
-    res.render("cpmk-cpl", {RPS, accessToken, nama, NIP})
-}
-
-controllers.detailCPMKdanCPL = async (req, res) => {
-    const id = req.params.id
-    const name = req.params.name
-    const accessToken = req.cookies.accessToken 
-    if (!accessToken)
-        return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    const id_dosen = payload.id
-    const nama = payload.nama
-    const NIP = payload.NIP
-
-    models.course_los.hasMany(models.course_lo_details, {foreignKey : "id"})
-    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
-
-    const CPMK = await models.course_los.findAll({
-        where : {
-            course_plan_id : 2
-        },
-        include : {
-            model : models.course_lo_details
-        }
-    })
-    const RPS = await models.course_plans.findAll({
-        where : {id : id}
-    })
-    const CPL = await models.course_lo_details.findAll({
-        include : {
-            model: models.course_los,
-            where : {
-                course_plan_id : 2
-            }
-        }
-    })
-    // res.json({CPL})
-    res.render("admin_cplcpmk", {RPS, CPL})
-}
-
-controllers.detailRPS = async (req, res) => {
-    const id = req.params.id
-    const name = req.params.name
-    
-    const accessToken = req.cookies.accessToken 
-    if (!accessToken)
-        return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    const id_dosen = payload.id
-    const nama = payload.nama
-    const NIP = payload.NIP
-
-    models.course_los.hasMany(models.course_lo_details, {foreignKey : "id"})
-    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
-    
-    const RPS = await models.course_plans.findOne({
-        where : {id : id}
-    })
-    const CPL = await models.course_lo_details.findAll({
-        include : {
-            model: models.course_los,
-            where : {course_plan_id : id}
-        }
-    })
-    const ref = await models.course_plan_references.findAll({
-        where : {course_plan_id : id}
-    })
-    const pertemuan = await models.course_plan_details.findAll({
-        where : {course_plan_id : id}
-    })
-    const komponen = await models.course_plan_assessments.findAll({
-        where : {course_plan_id : id}
-    })
-    res.render("detailFileRPS", {RPS, CPL, ref, pertemuan, komponen})
-}
-
 controllers.cetakRPS = async (req, res) => {
     target="_blank"
-    const id = req.params.id
-    const name = req.params.name
-    
-    const accessToken = req.cookies.accessToken 
-    if (!accessToken)
-        return res.status(200).json("tidak ada token")
-    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-    const id_dosen = payload.id
-    const nama = payload.nama
-    const NIP = payload.NIP
-
-    models.course_los.hasMany(models.course_lo_details, {foreignKey : "id"})
-    models.course_lo_details.belongsTo(models.course_los, {foreignKey : "course_lo_id"})
-    
-    const RPS = await models.course_plans.findOne({
-        where : {id : id}
-    })
-    const CPL = await models.course_lo_details.findAll({
-        include : {
-            model: models.course_los,
-            where : {course_plan_id : id}
-        }
-    })
-    const ref = await models.course_plan_references.findAll({
-        where : {course_plan_id : id}
-    })
-    const pertemuan = await models.course_plan_details.findAll({
-        where : {course_plan_id : id}
-    })
-    const komponen = await models.course_plan_assessments.findAll({
-        where : {course_plan_id : id}
-    })
-    res.render("PrintRPS", {RPS, CPL, ref, pertemuan, komponen})
-}
-
-controllers.persentaseRPS = async (req, res) => {
+    const idmatkul = req.params.idmatkul
     const accessToken = req.cookies.accessToken 
     if (!accessToken)
         return res.status(200).json("tidak ada token")
@@ -503,13 +375,35 @@ controllers.persentaseRPS = async (req, res) => {
     const RPS = await models.course_plans.count({})
     const week = await models.course_plan_details.count({})
     const hitung = await models.course_plan_assessments.count({
-        where : {method : "Project Based Learning"}
+        where : {flag : "1"}
     })
 
     var c = week - hitung
     var project = hitung/week*100
     var casee = c/week*100
-    res.render("admin_persentase", {nama, NIP, hitung, RPS, project, casee})
+    res.render("admin_print",{nama, NIP, hitung, RPS, project, casee, idmatkul})
+}
+
+controllers.persentaseRPS = async (req, res) => {
+    const idmatkul = req.params.idmatkul
+    const accessToken = req.cookies.accessToken 
+    if (!accessToken)
+        return res.status(200).json("tidak ada token")
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    const id_dosen = payload.id
+    const nama = payload.nama
+    const NIP = payload.NIP
+
+    const RPS = await models.course_plans.count({})
+    const week = await models.course_plan_details.count({})
+    const hitung = await models.course_plan_assessments.count({
+        where : {flag : "1"}
+    })
+
+    var c = week - hitung
+    var project = hitung/week*100
+    var casee = c/week*100
+    res.render("admin_persentase", {nama, NIP, hitung, RPS, project, casee, idmatkul})
 }
 
 module.exports = controllers

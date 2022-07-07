@@ -369,8 +369,18 @@
         </nav>
     </div>
     
-    <div>
-        <h6 style="margin-top:60px">Daftar RPS</h6>
+    <div><div class="row" >
+        <nav aria-label="breadcrumb" style="margin-top:75px;">
+            <ol class="breadcrumb">
+            <li class="me-3">
+                <a href="/admin/courses" class="btn btn-sm" style="font-size: 17px;font-weight:600;color: #404444">Daftar Matkul</a>
+            </li>
+            <li class="me-3" aria-current="page">
+                <a href="" class="btn btn-sm" style="background-color: #353535; color: #fff; font-weight:600; font-size: 17px; border-radius: 10px;">Laporan</a>
+            </li>
+            </ol>
+        </nav>
+    </div>
             <div class="row">
                 <div class="col-12" style="margin-top:70px">
                     <div class="card2 mb-4" style="border-radius: 10px;">
@@ -398,7 +408,7 @@
                                         <th width="480px">
                                             <a class='btn btn-list' target="_blank" href="/admin/course/report/<%= R.id %>/print" style="background-color: white; color:#353535; border:#353535 1px solid;">Cetak</a>
                                             <a class='btn btn-list' href="/admin/course/report/<%= R.course_id %>/cplcpmk/<%= R.id %>" style="background-color: white; color:#353535; border:#353535 1px solid;">Peta CPL-CPMK</a>
-                                            <a class='btn btn-list' href="/admin/course/report/<%= R.id %>/cblpbl" style="background-color: white; color:#353535; border:#353535 1px solid;">Persen RPS</a>
+                                            <a class='btn btn-list' href="/admin/course/report/<%= R.id %>/cblpbl" style="background-color: white; color:#353535; border:#353535 1px solid;">Persentase RPS</a>
                                         </th>
                                         </tr>
                                         <% } ) %>   

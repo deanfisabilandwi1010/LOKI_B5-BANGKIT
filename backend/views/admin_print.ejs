@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi E-RPS</title>
+    
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body">
+    <div>
+        <div class="col-12">
+            <div style="border-radius: 10px; width:98%; margin-top:5px">
+                <div class="card-body"  align="center">
+                <img class="img" style="width:3%; margin:30px 30px;"src="https://lp3m.unand.ac.id/seminar/tsadmin/todakimage/logo.png"/>
+                <h3>LAPORAN RPS</h3>
+                <br>
+                <table id="myTable" class="table table-bordered" style="margin-top:20px">
+                    <thead >
+                        <tr>
+                            <th style="background-color: rgba(211, 211, 211, 0.815); text-align: center;">CPL</th>
+                            <th style="background-color: rgba(211, 211, 211, 0.815); text-align: center;">CPMK</th>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">Mengidentifikasi, memformulasikan dan memecahkan permasalahan kebutuhan informasi dari suatu organisasi</td>
+                            <td>Mahasiswa mampu menjelaskan konsep dasar dan komponen aplikasi berbasis web </td>
+                            </tr>
+                       <tr>
+                        <td>Mahasiswa mampu menggunakan salah satu technology stack untuk membangun aplikasi berbasis web </td>
+                       </tr>
+                       <tr>
+                        <td>
+                            Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan atau implementasi 
+ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang 
+keahliannya 
+                        </td>
+                        <td>
+                            Memiliki kemampuan mengelola diri, komunikasi dan kerjasama
+                        </td>
+                       </tr>
+                    </tbody>
+                </table>
+                
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col" style="background-color: rgba(211, 211, 211, 0.815); text-align: center;">Keterangan</th>
+                            <th class="text-center" scope="col" style="background-color: rgba(211, 211, 211, 0.815); text-align: center;">Persentase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td scope="row">Project Based </td>
+                          <td class="text-center"><%= project %>%</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">Case Based</td>
+                          <td class="text-center"><%= casee %>%</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">Total</td>
+                          <td class="text-center">100%</td>
+                        </tr>
+                  </tbody>
+                  
+                  </table>
+            </div>
+        </div>
+    </div>  
+    <script type="text/javascript"> window.print() 
+        console.log("test")
+    </script>
+</body>
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+    const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
+    
+    // Validate that all variables exist
+    if(toggle && nav && bodypd && headerpd){
+    toggle.addEventListener('click', ()=>{
+    // show navbar
+    nav.classList.toggle('show')
+    // change icon
+    toggle.classList.toggle('bx-x')
+    // add padding to body
+    bodypd.classList.toggle('body-pd')
+    // add padding to header
+    headerpd.classList.toggle('body-pd')
+    })
+    }
+    }
+    
+    showNavbar('header-toggle','nav-bar','body-pd','header')
+    
+    /*===== LINK ACTIVE =====*/
+    const linkColor = document.querySelectorAll('.nav_link')
+    
+    function colorLink(){
+    if(linkColor){
+    linkColor.forEach(l=> l.classList.remove('active'))
+    this.classList.add('active')
+    }
+    }
+    linkColor.forEach(l=> l.addEventListener('click', colorLink))
+    
+});
+</script>
